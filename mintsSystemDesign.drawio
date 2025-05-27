@@ -50,10 +50,10 @@
           <mxGeometry x="970" y="414" width="110" height="130" as="geometry" />
         </mxCell>
         <mxCell id="Cx6Hk1srswsbLxOnWkwv-17" value="LR MQTT" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#232F3E;fillColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.mqtt_protocol;" vertex="1" parent="1">
-          <mxGeometry x="-410" y="280" width="60" height="60" as="geometry" />
+          <mxGeometry x="-600" y="680" width="60" height="60" as="geometry" />
         </mxCell>
         <mxCell id="Cx6Hk1srswsbLxOnWkwv-18" value="DC MQTT" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#232F3E;fillColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.mqtt_protocol;" vertex="1" parent="1">
-          <mxGeometry x="-280" y="280" width="60" height="60" as="geometry" />
+          <mxGeometry x="-600" y="800" width="60" height="60" as="geometry" />
         </mxCell>
         <mxCell id="Cx6Hk1srswsbLxOnWkwv-19" value="MQTT Subscriber V2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="710" y="240" width="220" height="110" as="geometry" />
