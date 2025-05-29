@@ -6,7 +6,6 @@
 
 ## 🖥️ IMD Internal Mints Data 
 
-
 ### 🔹 Hostname
 - **FQDN**: `mintsdata.circ.utdallas.edu`
 
@@ -59,21 +58,18 @@ These services are hosted @ ```io-sftp.circ.utdallas.edu``` access through IMD a
 - MDASH `mdash.circ.utdallas.edu  `
 
 
+### 📊 MDASH - MINTS Dashboards 
 
-
-
-## 📊 MDASH - MINTS Dashboards 
-
-### 🔹 Hostname
+#### 🔹 Hostname
 - **FQDN**: `mdash.circ.utdallas.edu`
 
-### 🔹 Services
+#### 🔹 Services
 - InfluxDB, Grafana, Node-RED OSN sync Service
 
-### 🔹 Network Info
+#### 🔹 Network Info
 - Server IP: `10.247.238.16` Local IP inside UTD network                            
 
-### 🔹 Hardware Specs
+#### 🔹 Hardware Specs
 - **OS**: Debian GNU/Linux 11  
 - **CPU**: 4 cores  
 - **RAM**: 8 GB  
@@ -83,11 +79,11 @@ These services are hosted @ ```io-sftp.circ.utdallas.edu``` access through IMD a
 
 ---
 
-## 🌐 Website Hosting Platform 
+### 🌐 Website Hosting Platform 
 
 - **FQDN**: `www1.circ.utdallas.edu`
 
-### 🔹 Purpose
+#### 🔹 Purpose
 Hosts websites:
 - sharedairdfw.com  
 - utdmint.info  
@@ -97,10 +93,10 @@ Hosts websites:
 - davidlary.info  
 - cisnerosres.utdallas.edu  
 
-### 🔹 Network Info
+#### 🔹 Network Info
 - Server IP: `10.182.78.148` Local IP inside UTD network        
 
-### 🔹 Hardware Specs
+#### 🔹 Hardware Specs
 - **CPU**: 1 core  
 - **RAM**: 16 GB  
 - **Disk**: < 30 GB  
@@ -109,14 +105,14 @@ Hosts websites:
 
 ---
 
-## 🧪 MQTT Broker 
+### 🧪 MQTT Broker 
 
 - **FQDN**: `mosquitto.circ.utdallas.edu` or `mqtt.circ.utdallas.edu`
 
-### 🔹 Network Info
+#### 🔹 Network Info
 - Server IP: `10.247.245.206` Local IP inside UTD network      
 
-### 🔹 Specs
+#### 🔹 Specs
 - **CPU**: 1 core  
 - **RAM**: 2 GB  
 - **Disk**: 30 GB  
@@ -125,34 +121,34 @@ Hosts websites:
 
 ---
 
-## Shared Air DFW API
+### Shared Air DFW API
 - **FQDN**: `mintsdata.circ.utdallas.edu`
 
 - Open API
 - https://mintsdata.circ.utdallas.edu/info
 
-### 🔹 Network
+#### 🔹 Network
 - Server IP: `10.247.245.211` Local IP inside UTD network
 
 ---
 
-## 🐘PostgreSQL DB 
+### 🐘PostgreSQL DB 
 
 - **FQDN**: `psql.circ.utdallas.edu`
 
-### 🔹 Specs
+#### 🔹 Specs
 - **OS**: Debian GNU/Linux 10  
 - **PostgreSQL**: v11.9  
 - **CPU**: 2 cores  
 - **RAM**: 8.5 GB  
 - **Disk**: 100 GB  
 
-### 🔹 Network
+#### 🔹 Network
 - Server IP: `10.247.245.219` Local IP inside UTD network
 
 ---
 
-## MFS Host
+### MFS Host
 
  - **FQDN**: `io-sftp.circ.utdallas.edu`
 Probably hosts forlders from Europa as well as all files on  `/mfs/io/` .
@@ -162,13 +158,13 @@ These services are access through IMD and ran there but hosted here.
 - [mqttLiveV3](https://github.com/mi3nts/mqttLiveV3): ```/mfs/io/groups/lary/gitHubRepos/mqttLiveV3```
 - [mints-sensordata-to-postgres-backend](https://github.com/mi3nts/mints-sensordata-to-postgres-backend): ```/mfs/io/groups/lary/mints-sensordata-to-postgres-backend ```
 
-### 🔹 Specs
+#### 🔹 Specs
 - **CPU**: 2 cores  
 - **RAM**: 8.5 GB  
 - **Disk**: 5 GB  
 - **Mounted**: `/mfs/io/circ/www/mints`
 
-### 🔹 Function
+#### 🔹 Function
 
 Auto-updates SharedAirDFW map from GitHub:
 
@@ -180,12 +176,12 @@ This has to be done on io-sftp
 
 **Note**: Accessible with UTD credentials
 
-### 🔹 Network
+#### 🔹 Network
 - Server IP: `10.247.245.208` Local IP inside UTD network
 
 ---
 
-## 💾 borg.circ.utdallas.edu
+### 💾 borg.circ.utdallas.edu
 
 - **Likely used for backups**
 - Server IP: `10.182.78.141` Local IP inside UTD network
