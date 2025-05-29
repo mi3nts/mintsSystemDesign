@@ -2,10 +2,10 @@
 # MINTS System Design
 
 ![MINTS Diagram](https://github.com/mi3nts/mintsSystemDesign/blob/main/res/mintsSystemDesign.png?raw=true)
-
 ---
 
-## 🖥️ IMD (Dell R710)
+## 🖥️ IMD Internal Mints Data 
+
 
 ### 🔹 Hostname
 - **FQDN**: `mintsdata.circ.utdallas.edu`
@@ -14,6 +14,7 @@
 - **OS**: CentOS Linux 7
 
 ### 🔹 Hardware Specs
+- **HW**: Dell R710
 - **CPU**: 8 cores (16 threads)  
 - **RAM**: 46 GB  
 - **Storage**: 5 TB  
@@ -30,15 +31,38 @@
 - **npm**: v6.14.5
 
 ---
+## VIRSH - Intel storage server 
+- **FQDN**: `virsh.circ.utdallas.edu`
 
-## 📊 MDASH
+### 🔹 Specs
+- **CPU**: 48 cores  
+- **RAM**: 385 GB  
+- **Disk**: 90 TB  
+- **Server**: Intel storage server (PSSC Labs)
+
+### 🔹 Network
+- Server IP: `10.247.245.145` Local IP inside UTD network
+
+### 🔹 Hosts the following VMs:
+- www1.circ.utdallas.edu  
+- mosquitto.circ.utdallas.edu / mqtt.circ.utdallas.edu  
+- mintsdata.circ.utdallas.edu  
+- PostgreSQL DB for SharedAirDFW: `psql.circ.utdallas.edu  `
+- SharedAirDFW Management `io-sftp.circ.utdallas.edu`
+   Also has older Europa accounts 
+- MDASH `mdash.circ.utdallas.edu  `
+
+
+
+
+
+## 📊 MDASH - MINTS Dashboards 
 
 ### 🔹 Hostname
 - **FQDN**: `mdash.circ.utdallas.edu`
 
 ### 🔹 Services
-- InfluxDB, Grafana, Node-RED
-- OSN syncs supported
+- InfluxDB, Grafana, Node-RED OSN sync Service
 
 ### 🔹 Network Info
 - Server IP: `10.247.238.16` Local IP inside UTD network                            
@@ -53,7 +77,9 @@
 
 ---
 
-## 🌐 www1.circ.utdallas.edu
+## 🌐 Website Hosting Platform 
+
+- **FQDN**: `www1.circ.utdallas.edu`
 
 ### 🔹 Purpose
 Hosts websites:
@@ -77,7 +103,9 @@ Hosts websites:
 
 ---
 
-## 🧪 mosquitto.circ.utdallas.edu / mqtt.circ.utdallas.edu
+## 🧪 MQTT Broker 
+
+- **FQDN**: `mosquitto.circ.utdallas.edu` or `mqtt.circ.utdallas.edu`
 
 ### 🔹 Network Info
 - Server IP: `10.247.245.206` Local IP inside UTD network      
@@ -91,17 +119,20 @@ Hosts websites:
 
 ---
 
-## 📁 mintsdata.circ.utdallas.edu
-- Shared Air DFW API
+## Shared Air DFW API
+- **FQDN**: `mintsdata.circ.utdallas.edu`
+
+- Open API
 - https://mintsdata.circ.utdallas.edu/info
-  
+
 ### 🔹 Network
 - Server IP: `10.247.245.211` Local IP inside UTD network
-  
-  
+
 ---
 
-## 🐘 psql.circ.utdallas.edu
+## 🐘PostgreSQL DB 
+
+- **FQDN**: `psql.circ.utdallas.edu`
 
 ### 🔹 Specs
 - **OS**: Debian GNU/Linux 10  
@@ -112,10 +143,21 @@ Hosts websites:
 
 ### 🔹 Network
 - Server IP: `10.247.245.219` Local IP inside UTD network
-  
+
 ---
 
-## 🔄 io-sftp.circ.utdallas.edu
+## MFS Host
+
+ - **FQDN**: `io-sftp.circ.utdallas.edu`
+Probably hosts forlders from Europa as well as all files on  `/mfs/io/` .
+
+These services are access through IMD and ran there.
+- [mqttSubscribersV2](https://github.com/mi3nts/mqttSubscribersV2)```/mfs/io/groups/lary/gitHubRepos/mqttSubscribersV2```
+- [mqttLiveV3](https://github.com/mi3nts/mqttLiveV3) ```/mfs/io/groups/lary/gitHubRepos/mqttLiveV3```
+- [mints-sensordata-to-postgres-backend](https://github.com/mi3nts/mints-sensordata-to-postgres-backend): ```/mfs/io/groups/lary/mints-sensordata-to-postgres-backend ```
+
+
+
 
 ### 🔹 Specs
 - **CPU**: 2 cores  
@@ -124,17 +166,19 @@ Hosts websites:
 - **Mounted**: `/mfs/io/circ/www/mints`
 
 ### 🔹 Function
+
 Auto-updates SharedAirDFW map from GitHub:
+
 ```bash
 cd /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map && bash update.sh >> update.log
 ```
+This has to be done on io-sftp 
 
-Comments - I can access this through UTD Credentials 
 
+**Note**: Accessible with UTD credentials
 
 ### 🔹 Network
 - Server IP: `10.247.245.208` Local IP inside UTD network
-  
 
 ---
 
@@ -145,27 +189,7 @@ Comments - I can access this through UTD Credentials
 
 ---
 
-## 🖧 virsh.circ.utdallas.edu
 
-### 🔹 Specs
-- **CPU**: 48 cores  
-- **RAM**: 385 GB  
-- **Disk**: 90 TB  
-- **Server**: Intel storage server (PSSC Labs)
-
-### 🔹 Network
-- Server IP: `10.247.245.145` Local IP inside UTD network
-
-
-### 🔹 Hosts the following VMs:
-- www1.circ.utdallas.edu  
-- mosquitto.circ.utdallas.edu / mqtt.circ.utdallas.edu  
-- mintsdata.circ.utdallas.edu  
-- psql.circ.utdallas.edu  
-- io-sftp.circ.utdallas.edu  
-- mdash.circ.utdallas.edu  
-
----
 
 ## ☁️ Amazon Services
 
