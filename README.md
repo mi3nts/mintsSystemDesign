@@ -19,13 +19,8 @@
 - **Storage**: 5 TB  
 
 ### 🔹 Network Info
-
-| Label                  | IP Address         | Description                                                  |
-|------------------------|--------------------|--------------------------------------------------------------|
-| Public IP (NAT)        | `129.110.247.1`     | Outbound NAT IP seen by the internet                         |
-| Server IP              | `10.247.238.16`     | Local IP inside UTD network                                  |
-| DNS Server             | `10.100.128.15`     | Resolves `.circ.utdallas.edu` hostnames                      |
-| Host IP                | `10.247.245.211`    | Internal IP bound to `mintsdata.circ.utdallas.edu`           |
+- Server IP: `10.247.238.16` Local IP inside UTD network                            
+- Host IP  : `10.247.245.211` Internal IP bound to 
 
 ### 🔹 Access
 - **User**: `MINTS User`  
@@ -39,19 +34,14 @@
 ## 📊 MDASH
 
 ### 🔹 Hostname
-- `mdash.circ.utdallas.edu`
+- **FQDN**: `mdash.circ.utdallas.edu`
 
 ### 🔹 Services
 - InfluxDB, Grafana, Node-RED
 - OSN syncs supported
 
 ### 🔹 Network Info
-
-| Label                  | IP Address         | Description                                                  |
-|------------------------|--------------------|--------------------------------------------------------------|
-| Public IP (NAT)        | `129.110.247.1`     | Internet-facing NAT IP                                       |
-| Server IP              | `10.247.245.223`    | Internal server IP                                           |
-| DNS Server             | `10.100.128.15`     | Resolves internal hostnames                                  |
+- Server IP: `10.247.238.16` Local IP inside UTD network                            
 
 ### 🔹 Hardware Specs
 - **OS**: Debian GNU/Linux 11  
@@ -69,18 +59,14 @@
 Hosts websites:
 - sharedairdfw.com  
 - utdmint.info  
-- [python.davidlary.info](http://python.davidlary.info/)  
+- python.davidlary.info
 - ganymededocs.circ.utdallas.edu  
 - mintsdata.utdallas.edu  
 - davidlary.info  
 - cisnerosres.utdallas.edu  
 
 ### 🔹 Network Info
-
-| Label                  | IP Address         | Description                                                  |
-|------------------------|--------------------|--------------------------------------------------------------|
-| Resolved Host IP       | `10.182.78.148`     | Internal IP                                                  |
-| DNS Server             | `10.100.128.15`     | Internal DNS resolver                                        |
+- Server IP: `10.182.78.148` Local IP inside UTD network        
 
 ### 🔹 Hardware Specs
 - **CPU**: 1 core  
@@ -94,11 +80,7 @@ Hosts websites:
 ## 🧪 mosquitto.circ.utdallas.edu / mqtt.circ.utdallas.edu
 
 ### 🔹 Network Info
-
-| Label                  | IP Address         | Description                                                  |
-|------------------------|--------------------|--------------------------------------------------------------|
-| Resolved Host IP       | `10.247.245.206`    | Internal IP                                                  |
-| DNS Server             | `10.100.128.15`     | Internal DNS resolver                                        |
+- Server IP: `10.247.245.206` Local IP inside UTD network      
 
 ### 🔹 Specs
 - **CPU**: 1 core  
@@ -110,11 +92,13 @@ Hosts websites:
 ---
 
 ## 📁 mintsdata.circ.utdallas.edu
-
-- **Unknown function**  
-- **Resolved Host IP**: `10.247.245.211`  
-- **DNS Server**: `10.100.128.15`
-
+- Shared Air DFW API
+- https://mintsdata.circ.utdallas.edu/info
+  
+### 🔹 Network
+- Server IP: `10.247.245.211` Local IP inside UTD network
+  
+  
 ---
 
 ## 🐘 psql.circ.utdallas.edu
@@ -127,9 +111,8 @@ Hosts websites:
 - **Disk**: 100 GB  
 
 ### 🔹 Network
-- **Host IP**: `10.247.245.219`  
-- **DNS Server**: `10.100.128.15`
-
+- Server IP: `10.247.245.219` Local IP inside UTD network
+  
 ---
 
 ## 🔄 io-sftp.circ.utdallas.edu
@@ -146,17 +129,19 @@ Auto-updates SharedAirDFW map from GitHub:
 cd /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map && bash update.sh >> update.log
 ```
 
+Comments - I can access this through UTD Credentials 
+
+
 ### 🔹 Network
-- **Host IP**: `10.247.245.208`  
-- **DNS Server**: `10.100.128.15`
+- Server IP: `10.247.245.208` Local IP inside UTD network
+  
 
 ---
 
 ## 💾 borg.circ.utdallas.edu
 
-- **Likely used for backups**  
-- **Resolved Host IP**: `10.182.78.141`  
-- **DNS Server**: `10.100.128.15`
+- **Likely used for backups**
+- Server IP: `10.182.78.141` Local IP inside UTD network
 
 ---
 
@@ -169,8 +154,8 @@ cd /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map && bash updat
 - **Server**: Intel storage server (PSSC Labs)
 
 ### 🔹 Network
-- **Host IP**: `10.247.245.145`  
-- **DNS Server**: `10.100.128.15`
+- Server IP: `10.247.245.145` Local IP inside UTD network
+
 
 ### 🔹 Hosts the following VMs:
 - www1.circ.utdallas.edu  
@@ -187,7 +172,6 @@ cd /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map && bash updat
 ### 🔹 MINTS - PROD (ChirpStack)
 - **Hostname**: `lora-large-1.trecis.cloud`  
 - **IP Address**: `34.204.203.10`  
-- **DNS**: `10.100.128.15`
 
 ### 🔹 MINTS - PROD (S3/OSN Syncs)
 - **OSN Endpoint**: `https://141.142.142.3/`
