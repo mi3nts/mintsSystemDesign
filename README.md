@@ -27,6 +27,12 @@
 - **User**: `MINTS User`  
 - **Method**: SSH with key-based authentication
 
+
+These services are hosted @ ```io-sftp.circ.utdallas.edu``` access through IMD and ran on IMD.
+- [mqttSubscribersV2](https://github.com/mi3nts/mqttSubscribersV2): ```/mfs/io/groups/lary/gitHubRepos/mqttSubscribersV2```
+- [mqttLiveV3](https://github.com/mi3nts/mqttLiveV3): ```/mfs/io/groups/lary/gitHubRepos/mqttLiveV3```
+- [mints-sensordata-to-postgres-backend](https://github.com/mi3nts/mints-sensordata-to-postgres-backend): ```/mfs/io/groups/lary/mints-sensordata-to-postgres-backend ```
+
 ### 🔹 Software
 - **npm**: v6.14.5
 
@@ -151,13 +157,10 @@ Hosts websites:
  - **FQDN**: `io-sftp.circ.utdallas.edu`
 Probably hosts forlders from Europa as well as all files on  `/mfs/io/` .
 
-These services are access through IMD and ran there.
-- [mqttSubscribersV2](https://github.com/mi3nts/mqttSubscribersV2)```/mfs/io/groups/lary/gitHubRepos/mqttSubscribersV2```
-- [mqttLiveV3](https://github.com/mi3nts/mqttLiveV3) ```/mfs/io/groups/lary/gitHubRepos/mqttLiveV3```
+These services are access through IMD and ran there but hosted here.
+- [mqttSubscribersV2](https://github.com/mi3nts/mqttSubscribersV2): ```/mfs/io/groups/lary/gitHubRepos/mqttSubscribersV2```
+- [mqttLiveV3](https://github.com/mi3nts/mqttLiveV3): ```/mfs/io/groups/lary/gitHubRepos/mqttLiveV3```
 - [mints-sensordata-to-postgres-backend](https://github.com/mi3nts/mints-sensordata-to-postgres-backend): ```/mfs/io/groups/lary/mints-sensordata-to-postgres-backend ```
-
-
-
 
 ### 🔹 Specs
 - **CPU**: 2 cores  
