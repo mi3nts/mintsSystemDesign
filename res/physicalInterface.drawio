@@ -1,9 +1,33 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" version="27.1.0">
   <diagram name="Page-1" id="AXLddjBOkNtREMI0aHdj">
-    <mxGraphModel>
+    <mxGraphModel dx="6321" dy="4643" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="sfCRKo0_vr712xjra1Gk-1" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;span style=&quot;font-size: 30px;&quot;&gt;VIRSH&lt;/span&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;align=right;strokeColor=#6c8ebf;sketch=1;curveFitting=1;jiggle=2;strokeOpacity=100;fillOpacity=50;" vertex="1" parent="1">
+          <mxGeometry x="120" y="-350" width="910" height="530" as="geometry" />
+        </mxCell>
+        <mxCell id="sfCRKo0_vr712xjra1Gk-2" value="&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;span style=&quot;font-size: 30px;&quot;&gt;IMD&lt;/span&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;align=right;strokeColor=#d6b656;sketch=1;curveFitting=1;jiggle=2;strokeOpacity=100;fillOpacity=50;" vertex="1" parent="1">
+          <mxGeometry x="120" y="-760" width="540" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="sfCRKo0_vr712xjra1Gk-3" value="&lt;span style=&quot;font-family: &amp;quot;Comic Sans MS&amp;quot;; font-size: 30px;&quot;&gt;AMAZON&lt;/span&gt;&lt;div&gt;&lt;font face=&quot;Comic Sans MS&quot;&gt;&lt;span style=&quot;font-size: 30px;&quot;&gt;WEB&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;div&gt;&lt;span style=&quot;font-family: &amp;quot;Comic Sans MS&amp;quot;; font-size: 30px;&quot;&gt;SERVICES&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;align=right;strokeColor=#6c8ebf;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="120" y="280" width="560" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="sfCRKo0_vr712xjra1Gk-4" value="" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="119.99999999999999" y="340" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="sfCRKo0_vr712xjra1Gk-5" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.dusuniot.com/wp-content/uploads/2022/08/chirpstack.jpg;clipPath=inset(33% 4.33% 33.67% 5% round 50%);" vertex="1" parent="1">
+          <mxGeometry x="121.34" y="363.5899999999999" width="198.8" height="73.09" as="geometry" />
+        </mxCell>
+        <mxCell id="sfCRKo0_vr712xjra1Gk-6" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://miro.medium.com/v2/resize:fit:360/1*h78te1Nr-bUgqCtmFylC_g.png;clipPath=inset(7.81% 34.67% 10.42% 34%);" vertex="1" parent="1">
+          <mxGeometry x="330" y="286.68" width="97.79" height="163.32" as="geometry" />
+        </mxCell>
+        <mxCell id="sfCRKo0_vr712xjra1Gk-8" value="" style="shape=datastore;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="310" y="500" width="180" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="sfCRKo0_vr712xjra1Gk-9" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.edureka.co/blog/wp-content/uploads/2016/10/1_B9CIOrxdROHvtdmouQA1_A-removebg-preview-300x225.png;" vertex="1" parent="1">
+          <mxGeometry x="320" y="580" width="159.99" height="120" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
