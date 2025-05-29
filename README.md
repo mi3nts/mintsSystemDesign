@@ -49,13 +49,14 @@ These services are hosted @ ```io-sftp.circ.utdallas.edu``` access through IMD a
 - Server IP: `10.247.245.145` Local IP inside UTD network
 
 ### 🔹 Hosts the following VMs:
-- www1.circ.utdallas.edu  
-- mosquitto.circ.utdallas.edu / mqtt.circ.utdallas.edu  
-- mintsdata.circ.utdallas.edu  
-- PostgreSQL DB for SharedAirDFW: `psql.circ.utdallas.edu  `
-- SharedAirDFW Management `io-sftp.circ.utdallas.edu`
+- 📊 MDASH: Mints Dashboards `mdash.circ.utdallas.edu`
+- 🌐 Website Hosting Platform `www1.circ.utdallas.edu`
+- 🧪 MQTT Broker: `mosquitto.circ.utdallas.edu`/`mqtt.circ.utdallas.edu` 
+- Shared Air DFW API `mintsdata.circ.utdallas.edu`
+- 🐘 PostgreSQL DB  for SharedAirDFW: `psql.circ.utdallas.edu  `
+- IO MFS Host: `io-sftp.circ.utdallas.edu`
    Also has older Europa accounts 
-- MDASH `mdash.circ.utdallas.edu  `
+- BackUP server `borg.circ.utdallas.edu`
 
 
 ### 📊 MDASH - MINTS Dashboards 
@@ -77,11 +78,10 @@ These services are hosted @ ```io-sftp.circ.utdallas.edu``` access through IMD a
 
 - **OIT Support**: Stephen Goss
 
----
-
 ### 🌐 Website Hosting Platform 
 
 - **FQDN**: `www1.circ.utdallas.edu`
+no local data other than /etc/nginx config files;
 
 #### 🔹 Purpose
 Hosts websites:
@@ -103,7 +103,6 @@ Hosts websites:
 - **Externally Accessible**  
 - **OIT Support**: Stephen Goss
 
----
 
 ### 🧪 MQTT Broker 
 
@@ -119,7 +118,6 @@ Hosts websites:
 - Requires: `mqtt.circ.utdallas.edu.crt` SSL certificate in `/etc/pki/mosquitto/certs/`  
 - **OIT Support**: Stephen Goss
 
----
 
 ### Shared Air DFW API
 - **FQDN**: `mintsdata.circ.utdallas.edu`
@@ -129,8 +127,6 @@ Hosts websites:
 
 #### 🔹 Network
 - Server IP: `10.247.245.211` Local IP inside UTD network
-
----
 
 ### 🐘PostgreSQL DB 
 
@@ -146,12 +142,13 @@ Hosts websites:
 #### 🔹 Network
 - Server IP: `10.247.245.219` Local IP inside UTD network
 
----
 
-### MFS Host
+
+### IO MFS Host
 
  - **FQDN**: `io-sftp.circ.utdallas.edu`
 Probably hosts forlders from Europa as well as all files on  `/mfs/io/` .
+
 
 These services are access through IMD and ran there but hosted here.
 - [mqttSubscribersV2](https://github.com/mi3nts/mqttSubscribersV2): ```/mfs/io/groups/lary/gitHubRepos/mqttSubscribersV2```
@@ -179,16 +176,16 @@ This has to be done on io-sftp
 #### 🔹 Network
 - Server IP: `10.247.245.208` Local IP inside UTD network
 
----
 
-### 💾 borg.circ.utdallas.edu
+## BACKup Server
+ - **FQDN**: `💾 borg.circ.utdallas.edu`
+
+Includes PostgreSQL backup is  kept here. 
 
 - **Likely used for backups**
 - Server IP: `10.182.78.141` Local IP inside UTD network
 
 ---
-
-
 
 ## ☁️ Amazon Services
 
