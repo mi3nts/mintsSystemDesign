@@ -148,8 +148,6 @@ Hosts websites:
 #### 🔹 Network
 - Server IP: `10.247.245.219` Local IP inside UTD network
 
-
-
 ### IO MFS Host
 
  - **FQDN**: `io-sftp.circ.utdallas.edu`
