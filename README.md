@@ -4,7 +4,6 @@
 
 ## IMD
 
-
 ### Hostname
 - **FQDN**: `mintsdata.circ.utdallas.edu`
 
@@ -35,7 +34,8 @@
 
 
 ## MDASH
-
+Debian GNU/Linux 11
+1TB disk
 
 
 
