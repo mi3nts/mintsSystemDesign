@@ -136,6 +136,8 @@ Hosts websites:
 
 ### 🐘PostgreSQL DB 
 
+- Noaa Wind inputs
+- ECMWF  
 - **FQDN**: `psql.circ.utdallas.edu`
 
 #### 🔹 Specs
