@@ -59,7 +59,7 @@ Use Cases:
 
 
 
-WESTA (Wearable Environmental Sensing for Tracking Air)
+# WESTA (Wearable Environmental Sensing for Tracking Air)
 ![image](https://github.com/user-attachments/assets/f45cb310-932e-4e3f-a303-166a887075e0)
 ![image](https://github.com/user-attachments/assets/9158e88f-dcc5-4ec7-be42-1f08f5af7efe)
 
