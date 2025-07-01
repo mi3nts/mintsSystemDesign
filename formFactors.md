@@ -81,7 +81,7 @@
 
 # 🚗 MASK – Mints Automobile Sensing Kit
 
-![MASK Side View](https://github.com/user-attachments/assets/42134c4a-33e1-42f0-b64f-f0dccf8ee153)  
+![image](https://github.com/user-attachments/assets/29f0d45b-0157-4274-a7ff-bbdc8b6ac1ce)
 ![MASK Front Mount](https://github.com/user-attachments/assets/9cebcfb8-5ed7-4740-bf34-56478a8e9fec)
 
 **MASK** is a compact, vehicle-mounted environmental sensing unit designed for mobile deployment. Mounted on a vehicle’s license plate, it collects real-time environmental and GPS data across urban and rural routes.
