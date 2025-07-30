@@ -27,11 +27,11 @@ Automation for code updates is handled by a cron job on io-sftp.circ.utdallas.ed
 
 ### www1.circ.utdallas.edu – Summary
 #### Overview
-VM?: Yes (it’s a virtual machine).
-OS: CentOS Linux 8.
-Relevant Software: nginx (used as a web server and reverse proxy).
-Backups: /var/www is mounted through IO (likely backed up by IO storage system).
-Storage: Less than 30 GB on this VM.
+- VM?: Yes (it’s a virtual machine).
+- OS: CentOS Linux 8.
+- Relevant Software: nginx (used as a web server and reverse proxy).
+- Backups: /var/www is mounted through IO (likely backed up by IO storage system).
+- Storage: Less than 30 GB on this VM.
 
 This server hosts multiple websites:
 - sharedairdfw.com
@@ -46,3 +46,21 @@ Who has access: CIRC admins, managed via ansible.
 - CPUs: 2.
 - RAM: 16 GB.
 - Externally Accessible?: Yes (it’s public-facing for hosting those websites).
+
+
+## mosquitto.circ.utdallas.edu / mqtt.circ.utdallas.edu – Summary
+- VM?: Yes
+- OS: CentOS Linux 8
+- Service: Mosquitto 1.6.15 (MQTT broker)
+- Storage: 30 GB disk
+Monitoring: Not set up
+Special Notes:
+- Requires a valid SSL certificate (mqtt.circ.utdallas.edu.crt) located at:
+```/etc/pki/mosquitto/certs/```
+- CPU / RAM: 1 CPU, 2 GB RAM
+- Externally Accessible?: No (internal-only).
+Purpose
+This VM runs the MQTT broker for the MINTS/CIRC ecosystem.
+It handles IoT sensor data publishing and subscriptions for other systems (like mintsdata and external devices), but is not public-facing.
+
+
