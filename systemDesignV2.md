@@ -1,9 +1,11 @@
 # CIRC Serices
 
 
-## mintsdata.circ.utdallas.edu
+## VIRSH Machine 
 
-### Overview
+### mintsdata.circ.utdallas.edu
+
+#### Overview
 VM?: Yes (it’s a virtual machine).
 Purpose: Serves as a read-only PostgreSQL subscriber database for the MINTS (Multimodal Intelligent Sensing) project.
 Hosts web services (e.g., SharedAirDFW) built in Node.js, proxied by nginx.
@@ -16,8 +18,8 @@ Primary Functions:
 - It hosts Node.js apps, serves APIs, and proxies through nginx, using data replicated from the master PostgreSQL at psql.circ.utdallas.edu.
 - Automation for code updates is handled by a cron job on io-sftp.circ.utdallas.edu, 
 
-## www1.circ.utdallas.edu – Summary
-### Overview
+### www1.circ.utdallas.edu – Summary
+#### Overview
 VM?: Yes (it’s a virtual machine).
 OS: CentOS Linux 8.
 Relevant Software: nginx (used as a web server and reverse proxy).
@@ -25,13 +27,13 @@ Backups: /var/www is mounted through IO (likely backed up by IO storage system).
 Storage: Less than 30 GB on this VM.
 
 This server hosts multiple websites:
-sharedairdfw.com
-utdmint.info
-python.davidlary.info
-ganymededocs.circ.utdallas.edu
-mintsdata.utdallas.edu
-davidlary.info
-cisnerosres.utdallas.edu
+- sharedairdfw.com
+- utdmint.info
+- python.davidlary.info
+- ganymededocs.circ.utdallas.edu
+- mintsdata.utdallas.edu
+- davidlary.info
+- cisnerosres.utdallas.edu
 
 Who has access: CIRC admins, managed via ansible.
 - CPUs: 2.
