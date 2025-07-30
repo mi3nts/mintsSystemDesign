@@ -18,6 +18,13 @@ Primary Functions:
 - It hosts Node.js apps, serves APIs, and proxies through nginx, using data replicated from the master PostgreSQL at psql.circ.utdallas.edu.
 - Automation for code updates is handled by a cron job on io-sftp.circ.utdallas.edu, 
 
+mintsdata.circ.utdallas.edu is the public-facing web and database server for MINTS/SharedAirDFW.
+
+It hosts Node.js apps, serves APIs, and proxies through nginx, using data replicated from the master PostgreSQL at psql.circ.utdallas.edu.
+
+Automation for code updates is handled by a cron job on io-sftp.circ.utdallas.edu, which needs a long-term solution (service account for deployments).
+
+
 ### www1.circ.utdallas.edu – Summary
 #### Overview
 VM?: Yes (it’s a virtual machine).
