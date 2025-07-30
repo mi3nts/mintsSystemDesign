@@ -109,9 +109,7 @@ It’s backed up regularly with borg, making it the most resilient database in t
 
 Internal IP: 10.247.245.219
 
-
-
-### io-sftp.circ.utdallas.edu – Summary
+### io-sftp.circ.utdallas.edu
 - VM?: Yes
 - OS: CentOS Linux 8
 - Service: Primarily SFTP & automation (no major application services)
