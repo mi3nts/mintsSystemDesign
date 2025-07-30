@@ -22,7 +22,7 @@ Likely runs:
 - Access: csim, Steven, Gi, Stephen.
 - CPU / RAM: 48 CPUs, 385 GB RAM.
 - Externally Accessible?: No (internal only).
-
+internal IP: 10.247.245.145
 
 ### mintsdata.circ.utdallas.edu
 
