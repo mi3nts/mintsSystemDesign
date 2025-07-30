@@ -8,6 +8,12 @@ OS: CentOS Linux 8.
 Service: virsh 4.5.0 – This indicates it’s running KVM (Kernel-based Virtual Machine), used for hosting VMs. (It’s not Proxmox, but conceptually similar — Proxmox also uses KVM under the hood.)
 Purpose:
 Serves as the hypervisor host for many CIRC virtual machines.
+- Storage: 90 TB.
+- Hardware: Intel Storage server purchased from PSSC Labs.
+- Access: csim, Steven, Gi, Stephen.
+- CPU / RAM: 48 CPUs, 385 GB RAM.
+- Externally Accessible?: No (internal only).
+
 
 Likely runs:
 - www1.circ.utdallas.edu (web host)
@@ -17,11 +23,7 @@ Likely runs:
 - io-sftp.circ.utdallas.edu (code deployment server)
 - mdash.circ.utdallas.edu (sensor data processing)
 
-- Storage: 90 TB.
-- Hardware: Intel Storage server purchased from PSSC Labs.
-- Access: csim, Steven, Gi, Stephen.
-- CPU / RAM: 48 CPUs, 385 GB RAM.
-- Externally Accessible?: No (internal only).
+
 internal IP: 10.247.245.145
 
 ### mintsdata.circ.utdallas.edu
