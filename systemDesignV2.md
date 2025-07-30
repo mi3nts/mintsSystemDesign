@@ -118,8 +118,10 @@ Internal IP: 10.247.245.219
 - Purpose: Deployment server for updating the SharedAirDFW frontend from GitHub.
 
 Runs a cron job:
-```cd /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map && \
-bash update.sh >> /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map/update.log ```
+```
+cd /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map && \
+bash update.sh >> /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map/update.log 
+```
 
 This pulls code updates and deploys them automatically to the live site.
 Storage: 5 GB disk.
