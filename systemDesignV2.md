@@ -111,5 +111,20 @@ Internal IP: 10.247.245.219
 
 
 
+### io-sftp.circ.utdallas.edu – Summary
+- VM?: Yes
+- OS: CentOS Linux 8
+- Service: Primarily SFTP & automation (no major application services)
+- Purpose: Deployment server for updating the SharedAirDFW frontend from GitHub.
 
+Runs a cron job:
+```cd /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map && \
+bash update.sh >> /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map/update.log ```
+
+This pulls code updates and deploys them automatically to the live site.
+Storage: 5 GB disk.
+CPU / RAM: 2 CPUs, 8.5 GB RAM.
+Externally Accessible?: No (internal only).
+
+In Simple Terms: io-sftp is a deployment automation box. It keeps SharedAirDFW updated from GitHub by running a cron-based update script. It’s small (5 GB) and has no backups or monitoring — but is critical for keeping the frontend in sync with code changes.
 
