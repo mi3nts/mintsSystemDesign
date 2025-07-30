@@ -59,7 +59,8 @@ Special Notes:
 ```/etc/pki/mosquitto/certs/```
 - CPU / RAM: 1 CPU, 2 GB RAM
 - Externally Accessible?: No (internal-only).
-Purpose
+
+- Purpose:
 This VM runs the MQTT broker for the MINTS/CIRC ecosystem.
 It handles IoT sensor data publishing and subscriptions for other systems (like mintsdata and external devices), but is not public-facing.
 
