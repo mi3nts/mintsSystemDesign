@@ -20,7 +20,7 @@
 
 ---
 
-## mintsdata.circ.utdallas.edu
+### mintsdata.circ.utdallas.edu
 - **VM?**: Yes  
 - **Purpose**:  
   - **Read-only PostgreSQL subscriber** for the MINTS project  
@@ -34,7 +34,7 @@
 
 ---
 
-## www1.circ.utdallas.edu
+### www1.circ.utdallas.edu
 - **VM?**: Yes  
 - **OS**: CentOS Linux 8  
 - **Service**: nginx (web server & reverse proxy)  
@@ -53,7 +53,7 @@
 
 ---
 
-## mosquitto.circ.utdallas.edu / mqtt.circ.utdallas.edu
+### mosquitto.circ.utdallas.edu / mqtt.circ.utdallas.edu
 - **VM?**: Yes  
 - **OS**: CentOS Linux 8  
 - **Service**: Mosquitto 1.6.15 (MQTT broker)  
@@ -66,7 +66,7 @@
 
 ---
 
-## psql.circ.utdallas.edu
+### psql.circ.utdallas.edu
 - **VM?**: Yes  
 - **OS**: Debian GNU/Linux 10  
 - **Service**: PostgreSQL 11.9 (**primary master database**)  
@@ -81,7 +81,7 @@
 
 ---
 
-## io-sftp.circ.utdallas.edu
+### io-sftp.circ.utdallas.edu
 - **VM?**: Yes  
 - **OS**: CentOS Linux 8  
 - **Service**: SFTP + automation  
@@ -98,7 +98,7 @@
 
 ---
 
-## borg.circ.utdallas.edu
+### borg.circ.utdallas.edu
 - **VM?**: Yes  
 - **Service**: Borg Backup  
 - **Purpose**:  
@@ -108,7 +108,7 @@
 - **Internal IP**: `10.182.78.141`
 ---
 
-## mdash.circ.utdallas.edu
+### mdash.circ.utdallas.edu
 - **VM?**: Yes  
 - **OS**: Debian GNU/Linux 11  
 - **Purpose**:  
@@ -119,13 +119,13 @@
     - **Node-RED** (data processing workflows and automation)  
   - Supports **automated reporting** via **Quarto**.  
 
-### Network Information
+#### Network Information
 - **Internal IP**: `10.247.245.223`  
 - **External/Public IP**: `129.110.247.1`  
 - **Subnet**: `10.247.245.128/25`  
 - **Default Gateway**: `10.247.245.129`  
 
-### Storage
+#### Storage
 - **Local Volumes (LVM):**
   - `/home`: **1 TB** total, **390 GB used** (41%) → likely container data and user files  
 - **Network-mounted storage:**  
@@ -135,7 +135,7 @@
 
 ## Quick Reference Table
 
-| Hostname                  | Internal IP       | Role                                      |
+| Hostname                 |  Internal IP      | Role                                     |
 |--------------------------|-------------------|------------------------------------------|
 | **virsh.circ**           | 10.247.245.145    | Hypervisor (KVM host)                    |
 | **psql.circ**            | 10.247.245.219    | Master PostgreSQL DB                     |
@@ -145,7 +145,4 @@
 | **io-sftp.circ**         | 10.182.78.143     | Deployment / SFTP                        |
 | **borg.circ**            | 10.182.78.141     | Backup storage                           |
 | **mdash.circ**           | 10.247.245.223    | Sensor processing + Influx/Grafana/Node-RED |
-
-
-"""
 
