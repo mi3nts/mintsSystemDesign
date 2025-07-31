@@ -26,9 +26,8 @@ Likely runs:
 
 internal IP: 10.247.245.145
 
-### mintsdata.circ.utdallas.edu
-
-#### Overview
+## mintsdata.circ.utdallas.edu
+### Overview
 VM?: Yes (it’s a virtual machine).
 Purpose: Serves as a read-only PostgreSQL subscriber database for the MINTS (Multimodal Intelligent Sensing) project.
 Hosts web services (e.g., SharedAirDFW) built in Node.js, proxied by nginx.
@@ -50,8 +49,8 @@ Automation for code updates is handled by a cron job on io-sftp.circ.utdallas.ed
 Internal IP: 10.247.245.211
 
 
-### www1.circ.utdallas.edu – Summary
-#### Overview
+## www1.circ.utdallas.edu – Summary
+### Overview
 - VM?: Yes (it’s a virtual machine).
 - OS: CentOS Linux 8.
 - Relevant Software: nginx (used as a web server and reverse proxy).
@@ -109,7 +108,7 @@ It’s backed up regularly with borg, making it the most resilient database in t
 
 Internal IP: 10.247.245.219
 
-### io-sftp.circ.utdallas.edu
+## io-sftp.circ.utdallas.edu
 - VM?: Yes
 - OS: CentOS Linux 8
 - Service: Primarily SFTP & automation (no major application services)
