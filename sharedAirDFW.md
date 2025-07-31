@@ -15,19 +15,59 @@ SharedAirDFW (https://www.sharedairdfw.com) is a **real-time air quality monitor
   - Wired or cellular networked.
   - Send data via:
     - **MQTT →** `mqtt.circ.utdallas.edu` (Mosquitto broker).
-    - **rsync →** `mintsdata.circ.utdallas.edu` (daily CSV & JSON, stored on Io).
 - **LoRaWAN Tertiary Sensors:**
-  - Gateways forward data to **ChirpStack (AWS)** → `mqtt.lora.trecis.cloud` → Python scripts process & save to Io.
+  - Uses LoRaWAN technology to transmit the data to LoRaWAN Gateways 
+  - Gateways forward data to **ChirpStack (AWS)** → `mqtt.lora.trecis.cloud`
+ 
 
-### **Servers**
-- **Mosquitto Broker:**  
-  `mosquitto.circ.utdallas.edu` (CNAME: `mqtt.circ.utdallas.edu`).  
-  Internal: 10.247.245.206 | External: 129.110.242.249.
+
+## **Data Conversion**
+## SharedAirDFW Support 
+The data produced by MINTS Nodes, accessible through [sharedairdfw.com](https://www.sharedairdfw.com/), is archived in a PostgreSQL database. To ensure seamless integration with SharedairDFW, we generate structured .csv files from the two MQTT pipelines. It's important to note that, while not mandatory for SharedairDFW, we employ machine learning-based calibration techniques, utilizing a research-grade climate sensor to enhance the quality of the collected climate data. This calibrated data is also stored in the PostgreSQL database. However, it's worth mentioning that the demand for machine learning-calibrated climate data is currently unnecessary, as sharedairdfw.com does not currently display climate data from MINTS nodes.
+
+### MQTT data from directly connected nodes for sharedairdfw.com as well as LoRaWAN Nodes
+The process of calibrating climate data, along with the steps of data cleansing and averaging, is managed by the firmware accessible on [GitHub - mi3nts/mqttLiveV3](https://github.com/mi3nts/mqttLiveV3). Within the IMD system, this repository is located on the mfs mount at /mfs/io/groups/lary/gitHubRepos/mqttLive/firmware.
+```
+cd /mfs/io/groups/lary/gitHubRepos/mqttLiveV3/firmware
+nohup ./runDataReaders.sh  >/dev/null 2>&1  &
+```
+
+At this point the Sensor data is properly formatted to be accepted into pstgresql DB. 
+
+
+### Live data migration into PostgreSQL
+[sharedairdfw.com](https://www.sharedairdfw.com/) relies on the structured data stored in CSV files, which are imported into a PostgreSQL database. This data integration process is facilitated by the firmware accessible at [GitHub - mi3nts/mints-sensordata-to-postgres-backend](https://github.com/mi3nts/mints-sensordata-to-postgres-backend). Within the IMD system, you can find this repository on the mfs mount at /mfs/io/groups/lary/mints-sensordata-to-postgres-backend.
+```
+cd /mfs/io/groups/lary/mints-sensordata-to-postgres-backend
+top | grep node
+```
+At this poin you should see something similar to the following 
+```
+ 1434 mints     20   0  924556  63372  15816 S   2.3  0.1   2:59.65 node                                                      1434 mints     20   0  924556  63372  15816 S   0.3  0.1   2:59.66 node                                                      1434 mints     20   0  924556  63964  15816 S   2.3  0.1   2:59.73 node       
+```
+
+Make sure the user is mints (second column) and the process ID (first column) is the same for all the rows. Afterwards kill the relavant process ID ( **1434 for this particular case** ).
+
+```
+kill 1434
+```
+
+The check in any Node JS processors are active.
+
+```
+top | grep node
+```
+
+If no processors are active, do 
+```
+./headlessStart.sh
+```
+
+Shared Air DFW also contains Wind Data Submitted by NOAH 
 
 - **Data Aggregation:**  
   `mintsdata.circ.utdallas.edu`.  
   Internal: 10.247.245.211 | External: 129.110.46.113.  
-  - rsync service (CSV & JSON collection).  
   - PostgreSQL database (backend for API).  
   - Node.js server (serves https://sharedairdfw.com).  
   - NOAA wind data ingestion (cron).
