@@ -146,10 +146,290 @@ borg.circ.utdallas.edu is the central backup server for the CIRC ecosystem. It s
 
 
 
+----------
+# CIRC Services for MINTS
+
+## virsh.circ.utdallas.edu
+- **VM?**: **No** – This is a **physical host**.
+- **OS**: CentOS Linux 8  
+- **Service**: **virsh 4.5.0** (KVM hypervisor; hosts all VMs)  
+- **Purpose**:  
+  - Serves as the **hypervisor host** for many CIRC virtual machines:  
+    - `www1.circ.utdallas.edu` (web host)  
+    - `mosquitto/mqtt.circ.utdallas.edu` (MQTT broker)  
+    - `mintsdata.circ.utdallas.edu` (PostgreSQL subscriber & API host)  
+    - `psql.circ.utdallas.edu` (PostgreSQL master)  
+    - `io-sftp.circ.utdallas.edu` (deployment server)  
+    - `mdash.circ.utdallas.edu` (sensor processing)  
+- **Storage**: 90 TB  
+- **Hardware**: Intel Storage server purchased from PSSC Labs  
+- **CPU / RAM**: 48 CPUs, 385 GB RAM  
+- **Access**: csim, Steven, Gi, Stephen  
+- **Externally Accessible?**: No  
+- **Internal IP**: `10.247.245.145`  
+
+---
+
+## mintsdata.circ.utdallas.edu
+- **VM?**: Yes  
+- **Purpose**:  
+  - **Read-only PostgreSQL subscriber** for the MINTS project  
+  - Hosts **public APIs & dashboards** (e.g., SharedAirDFW)  
+  - **Web services** (Node.js + nginx proxy)  
+  - Pulls **data updates from psql.circ.utdallas.edu** (master DB)  
+  - **Code updates** automated via cron job on `io-sftp`  
+- **Storage**: Part of IO-mounted web storage  
+- **Externally Accessible?**: Yes (via `https://api.sharedairdfw.com`)  
+- **Internal IP**: `10.247.245.211`  
+
+---
+
+## www1.circ.utdallas.edu
+- **VM?**: Yes  
+- **OS**: CentOS Linux 8  
+- **Service**: nginx (web server & reverse proxy)  
+- **Purpose**: Hosts multiple websites:  
+  - `sharedairdfw.com`  
+  - `utdmint.info`  
+  - `python.davidlary.info`  
+  - `ganymededocs.circ.utdallas.edu`  
+  - `mintsdata.utdallas.edu`  
+  - `davidlary.info`  
+  - `cisnerosres.utdallas.edu`  
+- **Backups**: `/var/www` is mounted via IO (likely backed up at storage level)  
+- **Storage**: <30 GB  
+- **CPU / RAM**: 2 CPUs, 16 GB RAM  
+- **Externally Accessible?**: Yes  
+- **Internal IP**: `10.182.78.148`  
+
+---
+
+## mosquitto.circ.utdallas.edu / mqtt.circ.utdallas.edu
+- **VM?**: Yes  
+- **OS**: CentOS Linux 8  
+- **Service**: Mosquitto 1.6.15 (MQTT broker)  
+- **Purpose**: Handles **IoT sensor data** publishing/subscriptions for the MINTS ecosystem  
+- **Special Notes**:  
+  - Requires valid SSL cert: `/etc/pki/mosquitto/certs/mqtt.circ.utdallas.edu.crt`  
+- **Storage**: 30 GB  
+- **CPU / RAM**: 1 CPU, 2 GB RAM  
+- **Externally Accessible?**: No  
+- **Internal IP**: `10.247.245.206`  
+
+---
+
+## psql.circ.utdallas.edu
+- **VM?**: Yes  
+- **OS**: Debian GNU/Linux 10  
+- **Service**: PostgreSQL 11.9 (**primary master database**)  
+- **Purpose**:  
+  - **Main PostgreSQL DB** for the MINTS ecosystem  
+  - Replicated by `mintsdata.circ.utdallas.edu` (read-only)  
+  - **Backups** stored via `borg.circ.utdallas.edu`  
+- **Storage**: 100 GB  
+- **CPU / RAM**: 2 CPUs, 16 GB RAM  
+- **Externally Accessible?**: No  
+- **Internal IP**: `10.247.245.219`  
+
+---
+
+## io-sftp.circ.utdallas.edu
+- **VM?**: Yes  
+- **OS**: CentOS Linux 8  
+- **Service**: SFTP + automation  
+- **Purpose**:  
+  - **Deployment server** for updating the SharedAirDFW frontend from GitHub  
+  - Runs **cron job**:  
+    ```bash
+    cd /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map && \
+    bash update.sh >> /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map/update.log
+    ```  
+- **Storage**: 5 GB  
+- **CPU / RAM**: 2 CPUs, 8.5 GB RAM  
+- **Externally Accessible?**: No  
+
+---
+
+## borg.circ.utdallas.edu
+- **VM?**: Yes  
+- **Service**: Borg Backup  
+- **Purpose**:  
+  - **Central backup server**  
+  - Stores deduplicated, compressed backups for CIRC systems (**especially `psql`**)  
+- **Access**: Controlled by CIRC admins (via Ansible)  
+- **Externally Accessible?**: No  
+
+---
+
+## Quick Reference Table
+
+| Hostname                  | Internal IP       | Role                              | Backups       | Public? |
+|--------------------------|-------------------|-----------------------------------|---------------|---------|
+| **virsh.circ**           | 10.247.245.145    | Hypervisor (KVM host)            | No            | No      |
+| **mintsdata.circ**       | 10.247.245.211    | Read-only DB, API, web services  | No            | Yes     |
+| **www1.circ**            | 10.182.78.148     | Web host (multi-site)           | IO-mounted    | Yes     |
+| **mosquitto/mqtt.circ**  | 10.247.245.206    | MQTT broker (IoT data)          | No            | No      |
+| **psql.circ**            | 10.247.245.219    | Master PostgreSQL DB            | Borg backups  | No      |
+| **io-sftp.circ**         | *Internal only*   | Deployment / SFTP               | No            | No      |
+| **borg.circ**            | *Internal only*   | Backup storage                  | Self-backup   | No      |
+
+---
+
+## Infrastructure Diagram
 
 
+# CIRC Services for MINTS
 
+## virsh.circ.utdallas.edu
+- **VM?**: **No** – This is a **physical host**.
+- **OS**: CentOS Linux 8  
+- **Service**: **virsh 4.5.0** (KVM hypervisor; hosts all VMs)  
+- **Purpose**:  
+  - Serves as the **hypervisor host** for many CIRC virtual machines:  
+    - `www1.circ.utdallas.edu` (web host)  
+    - `mosquitto/mqtt.circ.utdallas.edu` (MQTT broker)  
+    - `mintsdata.circ.utdallas.edu` (PostgreSQL subscriber & API host)  
+    - `psql.circ.utdallas.edu` (PostgreSQL master)  
+    - `io-sftp.circ.utdallas.edu` (deployment server)  
+    - `mdash.circ.utdallas.edu` (sensor processing)  
+- **Storage**: 90 TB  
+- **Hardware**: Intel Storage server purchased from PSSC Labs  
+- **CPU / RAM**: 48 CPUs, 385 GB RAM  
+- **Access**: csim, Steven, Gi, Stephen  
+- **Externally Accessible?**: No  
+- **Internal IP**: `10.247.245.145`  
 
+---
 
+## mintsdata.circ.utdallas.edu
+- **VM?**: Yes  
+- **Purpose**:  
+  - **Read-only PostgreSQL subscriber** for the MINTS project  
+  - Hosts **public APIs & dashboards** (e.g., SharedAirDFW)  
+  - **Web services** (Node.js + nginx proxy)  
+  - Pulls **data updates from psql.circ.utdallas.edu** (master DB)  
+  - **Code updates** automated via cron job on `io-sftp`  
+- **Storage**: Part of IO-mounted web storage  
+- **Externally Accessible?**: Yes (via `https://api.sharedairdfw.com`)  
+- **Internal IP**: `10.247.245.211`  
+
+---
+
+## www1.circ.utdallas.edu
+- **VM?**: Yes  
+- **OS**: CentOS Linux 8  
+- **Service**: nginx (web server & reverse proxy)  
+- **Purpose**: Hosts multiple websites:  
+  - `sharedairdfw.com`  
+  - `utdmint.info`  
+  - `python.davidlary.info`  
+  - `ganymededocs.circ.utdallas.edu`  
+  - `mintsdata.utdallas.edu`  
+  - `davidlary.info`  
+  - `cisnerosres.utdallas.edu`  
+- **Backups**: `/var/www` is mounted via IO (likely backed up at storage level)  
+- **Storage**: <30 GB  
+- **CPU / RAM**: 2 CPUs, 16 GB RAM  
+- **Externally Accessible?**: Yes  
+- **Internal IP**: `10.182.78.148`  
+
+---
+
+## mosquitto.circ.utdallas.edu / mqtt.circ.utdallas.edu
+- **VM?**: Yes  
+- **OS**: CentOS Linux 8  
+- **Service**: Mosquitto 1.6.15 (MQTT broker)  
+- **Purpose**: Handles **IoT sensor data** publishing/subscriptions for the MINTS ecosystem  
+- **Special Notes**:  
+  - Requires valid SSL cert: `/etc/pki/mosquitto/certs/mqtt.circ.utdallas.edu.crt`  
+- **Storage**: 30 GB  
+- **CPU / RAM**: 1 CPU, 2 GB RAM  
+- **Externally Accessible?**: No  
+- **Internal IP**: `10.247.245.206`  
+
+---
+
+## psql.circ.utdallas.edu
+- **VM?**: Yes  
+- **OS**: Debian GNU/Linux 10  
+- **Service**: PostgreSQL 11.9 (**primary master database**)  
+- **Purpose**:  
+  - **Main PostgreSQL DB** for the MINTS ecosystem  
+  - Replicated by `mintsdata.circ.utdallas.edu` (read-only)  
+  - **Backups** stored via `borg.circ.utdallas.edu`  
+- **Storage**: 100 GB  
+- **CPU / RAM**: 2 CPUs, 16 GB RAM  
+- **Externally Accessible?**: No  
+- **Internal IP**: `10.247.245.219`  
+
+---
+
+## io-sftp.circ.utdallas.edu
+- **VM?**: Yes  
+- **OS**: CentOS Linux 8  
+- **Service**: SFTP + automation  
+- **Purpose**:  
+  - **Deployment server** for updating the SharedAirDFW frontend from GitHub  
+  - Runs **cron job**:  
+    ```bash
+    cd /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map && \
+    bash update.sh >> /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map/update.log
+    ```  
+- **Storage**: 5 GB  
+- **CPU / RAM**: 2 CPUs, 8.5 GB RAM  
+- **Externally Accessible?**: No  
+
+---
+
+## borg.circ.utdallas.edu
+- **VM?**: Yes  
+- **Service**: Borg Backup  
+- **Purpose**:  
+  - **Central backup server**  
+  - Stores deduplicated, compressed backups for CIRC systems (**especially `psql`**)  
+- **Access**: Controlled by CIRC admins (via Ansible)  
+- **Externally Accessible?**: No  
+
+---
+
+## Quick Reference Table
+
+| Hostname                  | Internal IP       | Role                              | Backups       | Public? |
+|--------------------------|-------------------|-----------------------------------|---------------|---------|
+| **virsh.circ**           | 10.247.245.145    | Hypervisor (KVM host)            | No            | No      |
+| **mintsdata.circ**       | 10.247.245.211    | Read-only DB, API, web services  | No            | Yes     |
+| **www1.circ**            | 10.182.78.148     | Web host (multi-site)           | IO-mounted    | Yes     |
+| **mosquitto/mqtt.circ**  | 10.247.245.206    | MQTT broker (IoT data)          | No            | No      |
+| **psql.circ**            | 10.247.245.219    | Master PostgreSQL DB            | Borg backups  | No      |
+| **io-sftp.circ**         | *Internal only*   | Deployment / SFTP               | No            | No      |
+| **borg.circ**            | *Internal only*   | Backup storage                  | Self-backup   | No      |
+
+---
+
+## Infrastructure Diagram
+
+| virsh.circ (Hypervisor) |
+| (KVM host: 48 CPU / 385 GB RAM / 90 TB) |
+| |
+| +----------------+ +----------------+ |
+| | www1.circ | | mintsdata.circ | |
+| | (Websites) | | (APIs + DB RO) | |
+| +----------------+ +----------------+ |
+| |
+| +----------------+ +----------------+ |
+| | mosquitto.circ | | psql.circ | |
+| | (MQTT broker) | | (DB Master) | |
+| +----------------+ +----------------+ |
+| |
+| +----------------+ +----------------+ |
+| | io-sftp.circ | | borg.circ | |
+| | (Deployments) | | (Backups) | |
+| +----------------+ +----------------+ |
++---------------------------------------------------+
+
+## External Access:
+SharedAirDFW API & dashboards → mintsdata.circ (via nginx proxy)
+Websites (sharedairdfw.com, etc.) → www1.circ
+MQTT (IoT) → mosquitto/mqtt.circ (internal TLS)
 
 
