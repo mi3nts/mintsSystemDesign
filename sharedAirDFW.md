@@ -27,6 +27,7 @@ The data produced by MINTS Nodes, accessible through [sharedairdfw.com](https://
 
 ### MQTT data from directly connected nodes for sharedairdfw.com as well as LoRaWAN Nodes
 The process of calibrating climate data, along with the steps of data cleansing and averaging, is managed by the firmware accessible on [GitHub - mi3nts/mqttLiveV3](https://github.com/mi3nts/mqttLiveV3). Within the IMD system, this repository is located on the mfs mount at /mfs/io/groups/lary/gitHubRepos/mqttLive/firmware.
+Log In to IMD mintsdata.utdallas.edu
 ```
 cd /mfs/io/groups/lary/gitHubRepos/mqttLiveV3/firmware
 nohup ./runDataReaders.sh  >/dev/null 2>&1  &
@@ -37,6 +38,8 @@ At this point the Sensor data is properly formatted to be accepted into pstgresq
 
 ### Live data migration into PostgreSQL
 [sharedairdfw.com](https://www.sharedairdfw.com/) relies on the structured data stored in CSV files, which are imported into a PostgreSQL database. This data integration process is facilitated by the firmware accessible at [GitHub - mi3nts/mints-sensordata-to-postgres-backend](https://github.com/mi3nts/mints-sensordata-to-postgres-backend). Within the IMD system, you can find this repository on the mfs mount at /mfs/io/groups/lary/mints-sensordata-to-postgres-backend.
+
+Log In to IMD mintsdata.utdallas.edu
 ```
 cd /mfs/io/groups/lary/mints-sensordata-to-postgres-backend
 top | grep node
