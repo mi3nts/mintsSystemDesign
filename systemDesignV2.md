@@ -18,6 +18,19 @@
 - **Externally Accessible?**: No  
 - **Internal IP**: `10.247.245.145`  
 
+### Quick Reference Table
+
+| Hostname                 |  Internal IP      | Role                                     |
+|--------------------------|-------------------|------------------------------------------|
+| **virsh.circ**           | 10.247.245.145    | Hypervisor (KVM host)                    |
+| **psql.circ**            | 10.247.245.219    | Master PostgreSQL DB                     |
+| **mintsdata.circ**       | 10.247.245.211    | Read-only DB, API, web services          |
+| **www1.circ**            | 10.182.78.148     | Web host (multi-site)                    |
+| **mosquitto/mqtt.circ**  | 10.247.245.206    | MQTT broker (IoT data)                   |
+| **io-sftp.circ**         | 10.182.78.143     | Deployment / SFTP                        |
+| **borg.circ**            | 10.182.78.141     | Backup storage                           |
+| **mdash.circ**           | 10.247.245.223    | Sensor processing + Influx/Grafana/Node-RED |
+
 ---
 
 ### mintsdata.circ.utdallas.edu
@@ -133,16 +146,6 @@
 
 ---
 
-## Quick Reference Table
 
-| Hostname                 |  Internal IP      | Role                                     |
-|--------------------------|-------------------|------------------------------------------|
-| **virsh.circ**           | 10.247.245.145    | Hypervisor (KVM host)                    |
-| **psql.circ**            | 10.247.245.219    | Master PostgreSQL DB                     |
-| **mintsdata.circ**       | 10.247.245.211    | Read-only DB, API, web services          |
-| **www1.circ**            | 10.182.78.148     | Web host (multi-site)                    |
-| **mosquitto/mqtt.circ**  | 10.247.245.206    | MQTT broker (IoT data)                   |
-| **io-sftp.circ**         | 10.182.78.143     | Deployment / SFTP                        |
-| **borg.circ**            | 10.182.78.141     | Backup storage                           |
-| **mdash.circ**           | 10.247.245.223    | Sensor processing + Influx/Grafana/Node-RED |
 
+## Shared Air DFW 
