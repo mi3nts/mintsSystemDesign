@@ -143,9 +143,6 @@
   - `/home`: **1 TB** total, **390 GB used** (41%) → likely container data and user files  
 - **Network-mounted storage:**  
   - `/mfs/io/groups/lary`: **14 TB total**, **10 TB used** (73%)  
-
 ---
-
-
 
 ## Shared Air DFW 
