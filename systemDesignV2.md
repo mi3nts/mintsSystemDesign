@@ -15,7 +15,6 @@
 - **Storage**: 90 TB  
 - **Hardware**: Intel Storage server purchased from PSSC Labs  
 - **CPU / RAM**: 48 CPUs, 385 GB RAM  
-- **Access**: csim, Steven, Gi, Stephen  
 - **Externally Accessible?**: No  
 - **Internal IP**: `10.247.245.145`  
 
@@ -50,7 +49,6 @@
 - **Backups**: `/var/www` is mounted via IO (likely backed up at storage level)  
 - **Storage**: <30 GB  
 - **CPU / RAM**: 2 CPUs, 16 GB RAM  
-- **Externally Accessible?**: Yes  
 - **Internal IP**: `10.182.78.148`  
 
 ---
@@ -64,7 +62,6 @@
   - Requires valid SSL cert: `/etc/pki/mosquitto/certs/mqtt.circ.utdallas.edu.crt`  
 - **Storage**: 30 GB  
 - **CPU / RAM**: 1 CPU, 2 GB RAM  
-- **Externally Accessible?**: No  
 - **Internal IP**: `10.247.245.206`  
 
 ---
@@ -96,8 +93,8 @@
     bash update.sh >> /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map/update.log
     ```  
 - **Storage**: 5 GB  
-- **CPU / RAM**: 2 CPUs, 8.5 GB RAM  
-- **Externally Accessible?**: No  
+- **CPU / RAM**: 2 CPUs, 8.5 GB RAM
+- **Internal IP**: `10.182.78.143`
 
 ---
 
@@ -108,8 +105,7 @@
   - **Central backup server**  
   - Stores deduplicated, compressed backups for CIRC systems (**especially `psql`**)  
 - **Access**: Controlled by CIRC admins (via Ansible)  
-- **Externally Accessible?**: No  
-
+- **Internal IP**: `10.182.78.141`
 ---
 
 ## mdash.circ.utdallas.edu
@@ -139,16 +135,17 @@
 
 ## Quick Reference Table
 
-| Hostname                  | Internal IP       | Role                            |
-|--------------------------|-------------------|----------------------------------|
-| **virsh.circ**           | 10.247.245.145    | Hypervisor (KVM host)            |
-| **psql.circ**            | 10.247.245.219    | Master PostgreSQL DB             |
-| **mintsdata.circ**       | 10.247.245.211    | Read-only DB, API, web services  |
-| **www1.circ**            | 10.182.78.148     | Web host (multi-site)            |
-| **mosquitto/mqtt.circ**  | 10.247.245.206    | MQTT broker (IoT data)           |
-| **io-sftp.circ**         | *Internal only*   | Deployment / SFTP                |
-| **borg.circ**            | *Internal only*   | Backup storage                   |
-| **mdash.circ**           | 10.247.245.223    | Sensor processing + Influx/Grafana/Node-RED | 
+| Hostname                  | Internal IP       | Role                                      |
+|--------------------------|-------------------|------------------------------------------|
+| **virsh.circ**           | 10.247.245.145    | Hypervisor (KVM host)                    |
+| **psql.circ**            | 10.247.245.219    | Master PostgreSQL DB                     |
+| **mintsdata.circ**       | 10.247.245.211    | Read-only DB, API, web services          |
+| **www1.circ**            | 10.182.78.148     | Web host (multi-site)                    |
+| **mosquitto/mqtt.circ**  | 10.247.245.206    | MQTT broker (IoT data)                   |
+| **io-sftp.circ**         | 10.182.78.143     | Deployment / SFTP                        |
+| **borg.circ**            | 10.182.78.141     | Backup storage                           |
+| **mdash.circ**           | 10.247.245.223    | Sensor processing + Influx/Grafana/Node-RED |
+
 
 """
 
