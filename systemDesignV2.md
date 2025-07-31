@@ -392,6 +392,62 @@ borg.circ.utdallas.edu is the central backup server for the CIRC ecosystem. It s
 
 ---
 
+
+# mdash.circ.utdallas.edu
+
+- **VM?**: Yes  
+- **OS**: Debian GNU/Linux 11  
+- **Purpose**:  
+  - Ingests raw sensor data and processes it for the **Open Storage Network (OSN)**.  
+  - Hosts **Podman containers** for:
+    - **InfluxDB** (time-series database for sensor data)
+    - **Grafana** (data visualization dashboards)
+    - **Node-RED** (data processing workflows and automation)
+  - Supports automated reporting workflows via **Quarto** (used for rendering reports).  
+- **Container Management**:  
+  - Navigate to `/influxdb`. Copy `.example.env` → `.env` and configure credentials.  
+  - Build containers:  
+    ```bash
+    podman-compose up --build -d
+    ```  
+  - To update:  
+    ```bash
+    podman-compose up -d
+    ```  
+    > **Important:** Do **NOT** run `podman-compose down` (this removes InfluxDB volumes).  
+  - Manage containers:  
+    ```bash
+    podman container ls
+    podman stop <container_id>
+    podman rm <container_id>
+    ```
+
+- **Automated Reports**:  
+  - Install **Quarto** locally.  
+  - Render reports:  
+    ```bash
+    quarto render automated_reports
+    ```  
+    Output is in `/automated_reports/_site`.  
+  - Live preview during development:  
+    ```bash
+    quarto preview automated_reports
+    ```  
+
+- **Storage**: 1 TB disk (large, for raw data and containers).  
+- **Backups**: **Not backed up**.  
+- **Monitoring**: Not configured.  
+- **CPU / RAM**: 4 CPUs, 8 GB RAM.  
+
+  ```
+- **Externally Accessible?**: No (internal only).  
+
+**In simple terms:**  
+`mdash.circ.utdallas.edu` is an **internal data ingestion and processing hub** for the MINTS project. It moves raw sensor data into the OSN, runs **containerized services (InfluxDB, Grafana, Node-RED)** for time-series data handling and visualization, and supports **automated reporting pipelines** using Quarto.
+
+
+
+
 ## Quick Reference Table
 
 | Hostname                  | Internal IP       | Role                            | Backups       | Public? |
