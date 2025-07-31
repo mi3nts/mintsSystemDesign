@@ -394,42 +394,25 @@ borg.circ.utdallas.edu is the central backup server for the CIRC ecosystem. It s
 
 ## Quick Reference Table
 
-| Hostname                  | Internal IP       | Role                              | Backups       | Public? |
-|--------------------------|-------------------|-----------------------------------|---------------|---------|
+| Hostname                  | Internal IP       | Role                            | Backups       | Public? |
+|--------------------------|-------------------|----------------------------------|---------------|---------|
 | **virsh.circ**           | 10.247.245.145    | Hypervisor (KVM host)            | No            | No      |
+| **psql.circ**            | 10.247.245.219    | Master PostgreSQL DB             | Borg backups  | No      |
 | **mintsdata.circ**       | 10.247.245.211    | Read-only DB, API, web services  | No            | Yes     |
-| **www1.circ**            | 10.182.78.148     | Web host (multi-site)           | IO-mounted    | Yes     |
-| **mosquitto/mqtt.circ**  | 10.247.245.206    | MQTT broker (IoT data)          | No            | No      |
-| **psql.circ**            | 10.247.245.219    | Master PostgreSQL DB            | Borg backups  | No      |
-| **io-sftp.circ**         | *Internal only*   | Deployment / SFTP               | No            | No      |
-| **borg.circ**            | *Internal only*   | Backup storage                  | Self-backup   | No      |
+| **www1.circ**            | 10.182.78.148     | Web host (multi-site)            | IO-mounted    | Yes     |
+| **mosquitto/mqtt.circ**  | 10.247.245.206    | MQTT broker (IoT data)           | No            | No      |
+| **io-sftp.circ**         | *Internal only*   | Deployment / SFTP                | No            | No      |
+| **borg.circ**            | *Internal only*   | Backup storage                   | Self-backup   | No      |
+
+
 
 ---
 
-## Infrastructure Diagram
+### External Access:
+- **SharedAirDFW API & dashboards** → `mintsdata.circ` (via nginx proxy)  
+- **Websites** (`sharedairdfw.com`, etc.) → `www1.circ`  
+- **MQTT (IoT)** → `mosquitto/mqtt.circ` (internal TLS)  
 
-| virsh.circ (Hypervisor) |
-| (KVM host: 48 CPU / 385 GB RAM / 90 TB) |
-| |
-| +----------------+ +----------------+ |
-| | www1.circ | | mintsdata.circ | |
-| | (Websites) | | (APIs + DB RO) | |
-| +----------------+ +----------------+ |
-| |
-| +----------------+ +----------------+ |
-| | mosquitto.circ | | psql.circ | |
-| | (MQTT broker) | | (DB Master) | |
-| +----------------+ +----------------+ |
-| |
-| +----------------+ +----------------+ |
-| | io-sftp.circ | | borg.circ | |
-| | (Deployments) | | (Backups) | |
-| +----------------+ +----------------+ |
-+---------------------------------------------------+
 
-## External Access:
-SharedAirDFW API & dashboards → mintsdata.circ (via nginx proxy)
-Websites (sharedairdfw.com, etc.) → www1.circ
-MQTT (IoT) → mosquitto/mqtt.circ (internal TLS)
 
 
