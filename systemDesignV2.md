@@ -127,3 +127,29 @@ Externally Accessible?: No (internal only).
 
 In Simple Terms: io-sftp is a deployment automation box. It keeps SharedAirDFW updated from GitHub by running a cron-based update script. It’s small (5 GB) and has no backups or monitoring — but is critical for keeping the frontend in sync with code changes.
 
+## borg.circ.utdallas.edu – Summary
+VM?: Yes
+Purpose: Backup server using Borg
+Service: Borg Backup (deduplicated, compressed backups for other CIRC systems like psql.circ.utdallas.edu)
+Maintenance: None scheduled (manual updates)
+Backups: This is the backup host itself — it stores archives for other servers
+Access: Controlled by CIRC Admins; adding users requires running Ansible
+
+Other Notes:
+It does not run application services — it’s purely for backup storage.
+
+Used by servers like psql.circ.utdallas.edu, which explicitly states its database dumps are backed up to this host.
+
+In Simple Terms:
+borg.circ.utdallas.edu is the central backup server for the CIRC ecosystem. It stores deduplicated backups of critical systems (especially databases) using the Borg backup tool. It doesn’t host websites or apps — its sole job is to keep copies of important data safe.
+
+
+
+
+
+
+
+
+
+
+
