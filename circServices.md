@@ -46,9 +46,9 @@
 - **Internal IP**: `10.247.245.211`  
 
 **Questions:**
-**Are any other SharedAirDFW services running on this server?**
-**How does this tie into our existing crontab for sensor data processing?**
-**Is there any connection to the IMD server? If so, how is it linked?** 
+**-Are any other SharedAirDFW services running on this server?**
+**-How does this tie into our existing crontab for sensor data processing?**
+**-Is there any connection to the IMD server? If so, how is it linked?** 
 
 ---
 
@@ -153,7 +153,7 @@
 ---
 
 **Questions:**
-**What is Mfs- mooseFS, how it works between these virtual machines**
-**Is there any connection to the IMD server? If so, how is it linked?** 
+**-What is Mfs- mooseFS, how it works between these virtual machines**
+**-Is there any connection to the IMD server? If so, how is it linked?** 
 
 
