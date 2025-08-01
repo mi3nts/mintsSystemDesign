@@ -4,8 +4,9 @@
 ## Purpose
 SharedAirDFW (https://www.sharedairdfw.com) is a **real-time air quality monitoring platform** for the Dallas-Fort Worth region. It collects data from 100+ custom-built sensors and provides interactive public visualizations via a web map and REST API.
 
+---
 
-## 2. System Architecture
+## System Architecture
 
 ### **Sensors**
 - **Primary (Mothership) Sensors:**
@@ -15,13 +16,15 @@ SharedAirDFW (https://www.sharedairdfw.com) is a **real-time air quality monitor
 - **LoRaWAN Tertiary Sensors:**
   - Uses LoRaWAN technology to transmit the data to LoRaWAN Gateways 
   - Gateways forward data to **ChirpStack (AWS)** → `mqtt.lora.trecis.cloud`
- 
+
+ ---
 
 ## **Data Conversion**
-## SharedAirDFW Support 
+
+### Sensor data Ingestion
 The data produced by MINTS Nodes, accessible through [sharedairdfw.com](https://www.sharedairdfw.com/), is archived in a PostgreSQL database. To ensure seamless integration with SharedairDFW, we generate structured .csv files from the two MQTT pipelines. It's important to note that, while not mandatory for SharedairDFW, we employ machine learning-based calibration techniques, utilizing a research-grade climate sensor to enhance the quality of the collected climate data. This calibrated data is also stored in the PostgreSQL database. However, it's worth mentioning that the demand for machine learning-calibrated climate data is currently unnecessary, as sharedairdfw.com does not currently display climate data from MINTS nodes.
 
-### MQTT data from directly connected nodes for sharedairdfw.com as well as LoRaWAN Nodes
+#### MQTT data from directly connected nodes for sharedairdfw.com as well as LoRaWAN Nodes
 The process of calibrating climate data, along with the steps of data cleansing and averaging, is managed by the firmware accessible on [GitHub - mi3nts/mqttLiveV3](https://github.com/mi3nts/mqttLiveV3). Within the IMD system, this repository is located on the mfs mount at /mfs/io/groups/lary/gitHubRepos/mqttLive/firmware.
 Log In to IMD mintsdata.utdallas.edu
 ```
@@ -30,7 +33,7 @@ nohup ./runDataReaders.sh  >/dev/null 2>&1  &
 ```
 At this point the Sensor data is properly formatted to be accepted into pstgresql DB. 
 
-### Live data migration into PostgreSQL
+#### Live sensor data migration into PostgreSQL
 [sharedairdfw.com](https://www.sharedairdfw.com/) relies on the structured data stored in CSV files, which are imported into a PostgreSQL database. This data integration process is facilitated by the firmware accessible at [GitHub - mi3nts/mints-sensordata-to-postgres-backend](https://github.com/mi3nts/mints-sensordata-to-postgres-backend). Within the IMD system, you can find this repository on the mfs mount at /mfs/io/groups/lary/mints-sensordata-to-postgres-backend.
 
 Log In to IMD mintsdata.utdallas.edu
@@ -56,13 +59,14 @@ If no processors are active, do
 ```
 Shared Air DFW also contains Wind Data Submitted by NOAH 
 
+---
 
-## Mints Wind Data Ingestion
+### Wind Data Ingestion
 
-### Purpose
+#### Purpose
 Fetch **NOAA GFS (Global Forecast System)** wind forecast data every 6 hours, convert it into JSON format, and **store it in the SharedAirDFW PostgreSQL database** for display on the website and API.
 
-### How It Works
+#### How It Works
 1. **Downloads** GFS forecast files from NOAA servers (`nomads.ncep.noaa.gov`).
 2. **Converts GRIB2 → JSON** using `grib2json`:
    - U-component (east–west wind).
@@ -81,14 +85,14 @@ cp pypsqlcon-template.py pypsqlcon.py  # Configure DB credentials
 ```
 Q: why cant I use IMD - and where is it currently been ran, can be on io-sftp as well. 
 
-### Manual Run
+#### Manual Run
 ```bash
 cd /home/mints/WebApp/AQViz/AQBACKEND-POSTGRES/mints-wind-data-ingestion
 python3 converter.py
 python3 deleteOld.py
 ```
 
-### Automating (Cron)
+#### Automating (Cron)
 Edit crontab (`crontab -e`):
 ```
 0 */6 * * * cd /home/mints/WebApp/AQViz/AQBACKEND-POSTGRES/mints-wind-data-ingestion && /usr/bin/python3 converter.py >> wind_ingestion.log 2>&1
@@ -161,14 +165,16 @@ pm2 start index.js --name "mints-noaa-api"
 pm2 status
 pm2 logs mints-noaa-api
 ```
-# SharedAirDFW Frontend (`sharedairdfw_map`)
+
+
+## Front End - SharedAirDFW (`sharedairdfw_map`)
 
 The **SharedAirDFW frontend** is the public-facing **interactive map and dashboard** available at [https://sharedairdfw.com](https://sharedairdfw.com).  
 It is a **Single Page Application (SPA)** built using **Vue.js** and served through **Nginx** at the University of Texas at Dallas.
 
 ---
 
-## **Purpose**
+### **Purpose**
 - Provide a **real-time, interactive map** of air quality data across Dallas-Fort Worth.
 - Display data from:
   - **Calibrated sensor readings** (via `mints-noaa-api`).
@@ -177,7 +183,7 @@ It is a **Single Page Application (SPA)** built using **Vue.js** and served thro
 
 ---
 
-## **Key Technologies**
+### **Key Technologies**
 - **Vue.js**: For building the frontend SPA.
 - **Nginx**: Serves the compiled static files from `/dist`.
 - **Node.js API**: Consumes data from `mints-noaa-api` (proxied by Nginx).
@@ -185,7 +191,7 @@ It is a **Single Page Application (SPA)** built using **Vue.js** and served thro
 
 ---
 
-## **Repository**
+### **Repository**
 - GitHub: [mi3nts/sharedairdfw_map](https://github.com/mi3nts/sharedairdfw_map)
 - Path on server:
   ```
@@ -194,7 +200,7 @@ It is a **Single Page Application (SPA)** built using **Vue.js** and served thro
 
 ---
 
-## **Running in Development Mode**
+### **Running in Development Mode**
 For local testing:
 ```bash
 git clone https://github.com/mi3nts/sharedairdfw_map.git
@@ -206,7 +212,7 @@ npm run serve
 
 ---
 
-## **Building for Production**
+### **Building for Production**
 To build a deployable version:
 ```bash
 npm run build
@@ -221,7 +227,7 @@ cp -r dist/* /home/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map/dist/
 
 ---
 
-## **Automated Updates**
+### **Automated Updates**
 Q - is this running on io-sftp or elsewhere and whats is the purpose of www1.circ
 
 A **cron job** on `io-sftp.circ.utdallas.edu`:
@@ -240,7 +246,7 @@ cd /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map && bash updat
 
 ---
 
-## **Nginx**
+### **Nginx**
 Q - not sure how this works and where it should run from
 
 The frontend is served by **Nginx**:
@@ -255,7 +261,7 @@ sudo systemctl restart nginx
 
 ---
 
-## **Data Flow**
+### **Data Flow**
 1. **Sensors** collect air quality data → stored in PostgreSQL (via `mints-sensordata-to-postgres-backend`).
 2. **Wind data** fetched via `mints-wind-data-ingestion` → stored in PostgreSQL.
 3. **mints-noaa-api** exposes sensor & wind data through REST endpoints.
@@ -263,7 +269,7 @@ sudo systemctl restart nginx
 
 ---
 
-## **Common Troubleshooting**
+### **Common Troubleshooting**
 - **Frontend not updating?**
   - Check `update.log` for cron errors.
   - Ensure `.git` permissions allow the `mints` user to pull updates.
