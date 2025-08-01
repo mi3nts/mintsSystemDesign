@@ -154,6 +154,7 @@
 
 **Questions:**
 - **What is Mfs - mooseFS, how it works between these virtual machines**
-- **Is there any connection to the IMD server? If so, how is it linked?** 
+- **Is there any connection to the IMD server? If so, how is it linked?**
+- **Not all folders within mfs not accessible via IMD or MDASH**
 
 
