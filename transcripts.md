@@ -71,13 +71,6 @@
 
 ---
 
-## Closing Remarks
-- **Partnership between Research & OIT:** Dr. Larry emphasized collaboration for building robust infrastructure that can benefit **multiple researchers** at UTD.  
-- **Importance of reliability:** Needed for **community trust** and **city/county partnerships**.  
-- **Recognition of efforts:** Appreciation expressed for Chris and team for keeping the current system running despite limitations.  
-
----
-
 **Next Steps:**  
 - Schedule **working sessions** for architecture documentation.  
 - **Set up AWS IoT endpoint** and test with lab sensors.  
@@ -102,7 +95,7 @@
 ### 1. **AWS Account Setup & Access**  
 - A **sandbox AWS account** has been created for MINTS-AI.  
 - Plan to **create a dedicated production account** once architecture is finalized.  
-- Access issues for Dr. Larry were reported; the **Cloud team will resolve** and ensure **Lakitha and John gain access**.  
+- Access issues were reported; the **Cloud team will resolve** and ensure **mints-ai team gain access**.  
 - **No shared service accounts** for security reasons — individuals will have role-based access.
 
 ### 2. **Training & Enablement**  
