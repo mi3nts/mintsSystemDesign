@@ -1,6 +1,5 @@
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** April 27, 2023  
+# April 27, 2023  
 
 ## Purpose of the Meeting
 - Conduct a **discovery session** to review the current system for sensing infrastructure.
@@ -78,8 +77,7 @@
 
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** May 11, 2023  
+# May 11, 2023  
 
 ---
 
@@ -140,8 +138,7 @@
 
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** May 25, 2023  
+# May 25, 2023  
 
 
 ## Purpose of the Meeting
@@ -217,8 +214,7 @@
 
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** June 01, 2023  
+# June 01, 2023  
 ---
 
 ## Purpose of the Meeting
@@ -283,8 +279,7 @@
 - **Plan for extended AWS IoT workshop** (week of June 12).  
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** June 08, 2023  
+# June 08, 2023  
 
 ---
 
@@ -352,8 +347,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** June 22, 2023  
+# June 22, 2023  
 
 ---
 
@@ -516,8 +510,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 - **Draft AWS-based re-architecture proposal** (AWS team).  
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** July 06, 2023  
+# July 06, 2023  
 
 ---
 
@@ -599,8 +592,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** July 20, 2023  
+# July 20, 2023  
 
 ---
 
@@ -684,8 +676,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 - **Schedule follow-up session** for reviewing storage & cost model.  
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** August 10, 2023  
+# August 10, 2023  
 
 ---
 
@@ -767,8 +758,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 - Schedule **next session** to review emulator results and cost projections.  
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** August 31, 2023  
+# August 31, 2023  
 ---
 
 ## Purpose of the Meeting
@@ -849,8 +839,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** September 6, 2023  
+# September 6, 2023  
 ---
 
 ## Purpose of the Meeting
@@ -932,11 +921,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 - **Update system architecture diagrams** to reflect AWS migration path.  
 - Schedule **follow-up meeting** to review migration progress and infrastructure stability.  
 
-
-
-
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** September 7, 2023  
+# September 7, 2023  
 
 ---
 
@@ -1020,8 +1005,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** September 14, 2023  
+# September 14, 2023  
 
 ---
 
@@ -1096,8 +1080,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 - **Schedule follow-up** to review migration progress and cost monitoring setup.  
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** September 21, 2023  
+# September 21, 2023  
 
 ---
 
@@ -1177,8 +1160,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** September 25, 2023  
+# September 25, 2023  
 ---
 
 ## Purpose of the Meeting
@@ -1257,8 +1239,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 - **Prepare migration plan** for final PostgreSQL cutover.  
 - **Review updated documentation and architecture diagrams** at the next session.  
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** October 5, 2023  
+# October 5, 2023  
 
 ---
 
@@ -1336,8 +1317,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** October 11, 2023  
+# October 11, 2023  
 
 ---
 
@@ -1421,8 +1401,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** October 12, 2023  
+# October 12, 2023  
 
 ---
 
@@ -1499,8 +1478,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 - **Document all cron jobs, repos, and service locations** in Confluence.  
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** October 19, 2023  
+# October 19, 2023  
 
 ---
 
@@ -1576,8 +1554,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** October 26, 2023  
+# October 26, 2023  
 
 ---
 
@@ -1653,8 +1630,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 
 
 
-# Comprehensive Summary of MINTS-AI Meeting  
-**Date:** November 2, 2023  
+# November 2, 2023  
 
 ---
 
@@ -1725,9 +1701,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 - **Prepare project closure plan** for discussion in the next meeting.  
 
 
-# Comprehensive Summary of MINTS-AI Meetings  
-
-## Meeting 1: November 6, 2023  
+# November 6, 2023  
 
 ### Purpose:  
 - **Clarify database architecture** for SharedAirDFW migration.  
@@ -1756,14 +1730,14 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
 
 ---
 
-## Meeting 2: November 9, 2023  
+# November 9, 2023  
 
-### Purpose:  
+## Purpose:  
 - **Finalize decision on database selection** for SharedAirDFW migration.  
 - **Plan live data ingestion** for AWS environment.  
 - **Outline steps for updating website containers** to connect to the new database.  
 
-### Key Points:  
+## Key Points:  
 - **Database Decision:**  
   - **RDS PostgreSQL (Aurora)** chosen as the primary database.  
   - **DynamoDB** no longer required (to avoid rewriting ingestion/application logic).  
@@ -1782,7 +1756,7 @@ Chris provided a detailed breakdown of the **current MINTS-AI infrastructure**:
   - Python ingestion process to run on a **dedicated EC2 instance** (Ubuntu).  
   - **DBA team & consultants** will assist with container-to-database connection.  
 
-### Decisions & Action Items:  
+## Decisions & Action Items:  
 1. **PostgreSQL RDS** confirmed as the final database (DynamoDB removed).  
 2. **Spin up EC2 T2 micro** for running Python ingestion scripts (Chris Simmons to set up).  
 3. **SSH keys from Mints** to be added for EC2 access.  
