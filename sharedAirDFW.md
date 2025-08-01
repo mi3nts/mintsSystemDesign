@@ -83,7 +83,7 @@ cd /home/mints/WebApp/AQViz/AQBACKEND-POSTGRES/mints-wind-data-ingestion
 python3 -m pip install requests psycopg2
 cp pypsqlcon-template.py pypsqlcon.py  # Configure DB credentials
 ```
-Q: why cant I use IMD - and where is it currently been ran, can be on io-sftp as well. 
+**Q: Why can’t I use the IMD server, and where is the process currently running? Is it been hosted on io-sftp?**
 
 #### Manual Run
 ```bash
@@ -127,7 +127,10 @@ cd /home/mints/WebApp/AQViz/AQBACKEND-POSTGRES/mints-noaa-api
 npm install
 ```
 
-Q - Is this how this is ran - not explicitely documented. 
+**Questions:**
+**- How exactly is this process currently being run?**
+**- Where is it running (e.g., which server or environment)?** 
+
 ### Run the API
 ```bash
 node index.js
@@ -157,6 +160,9 @@ https://api.sharedairdfw.com
 - `/data/average/:type/:sensor_id/:start_date/:end_date/:interval?` → Averaged readings.
 
 **Datetime format:** `YYYY-MM-DDTHH:MM:SS.00Z`
+
+**Questions:**
+**Not sure if this is correct** 
 
 ### Production Management
 Usually run as a **systemd service** or via **pm2**:
@@ -228,9 +234,12 @@ cp -r dist/* /home/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map/dist/
 ---
 
 ### **Automated Updates**
-Q - is this running on io-sftp or elsewhere and whats is the purpose of www1.circ
+**Questions:**
+**- How exactly is this process currently being run?**
+**- Where is it running (e.g., which server or environment)?** 
+**- How does www1.circ come into the fold** 
 
-A **cron job** on `io-sftp.circ.utdallas.edu`:
+A **cron job** on `io-sftp.circ.utdallas.edu` running on geikhans account:
 - Pulls the latest changes from GitHub.
 - Runs `npm run build`.
 - Updates the `/dist` directory.
@@ -247,7 +256,8 @@ cd /mfs/io/circ/www/mints/WebApp/AQViz/AQFRONTEND/sharedairdfw_map && bash updat
 ---
 
 ### **Nginx**
-Q - not sure how this works and where it should run from
+**Questions:**
+**Not sure of how this works** 
 
 The frontend is served by **Nginx**:
 - Root directory:
