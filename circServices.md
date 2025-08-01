@@ -45,6 +45,11 @@
 - **Externally Accessible?**: Yes (via `https://api.sharedairdfw.com`)  
 - **Internal IP**: `10.247.245.211`  
 
+**Questions:**
+**Are any other SharedAirDFW services running on this server?**
+**How does this tie into our existing crontab for sensor data processing?**
+**Is there any connection to the IMD server? If so, how is it linked?** 
+
 ---
 
 ## www1.circ.utdallas.edu
@@ -63,6 +68,8 @@
 - **Storage**: <30 GB  
 - **CPU / RAM**: 2 CPUs, 16 GB RAM  
 - **Internal IP**: `10.182.78.148`  
+**Questions:**
+**Will we get ownership of this, if so what services should I be running here. How do i manage sharedairdfw and other mints websites here** 
 
 ---
 
@@ -144,4 +151,9 @@
 - **Network-mounted storage:**  
   - `/mfs/io/groups/lary`: **14 TB total**, **10 TB used** (73%)  
 ---
+
+**Questions:**
+**What is Mfs- mooseFS, how it works between these virtual machines**
+**Is there any connection to the IMD server? If so, how is it linked?** 
+
 
