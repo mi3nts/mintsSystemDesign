@@ -68,6 +68,23 @@ cd /mfs/io/groups/lary/gitHubRepos/mqttPMCorrections/firmware
 nohup ./runCorrections.sh  >/dev/null 2>&1  &
 ```
 
+## Technical Overview 
+F5 Load Balancer
+    * Redirects traffic:
+        * mintsdata:2222 → imd:22 for SSH.
 
+
+## Potential Issues 
+
+### SSH Server Outage
+* System: mints@mintsdata.utdallas.edu
+* Issue:
+    * SSH access failed (kex_exchange_identification: Connection reset by peer), preventing login.
+    * Occurred ahead of an important demo for Prof. Lary.
+* Action Taken:
+    * Stephen intervened to bring the system back online.
+    * Root cause not detailed, likely a service or host-level failure.
+* Impact:
+    * Temporary disruption to remote management and access for MINTS operations.
 
 
