@@ -158,8 +158,11 @@
 - **Not all folders within mfs not accessible via IMD or MDASH**
 - **Can we manage all mints services using one VM** 
 
-# AWS specs - Current Infastructure 
+# AWS specs for LoRaWAN - Current Infastructure 
+
 ```
+Name	ID	type		DNS name	Public IP	key	creation date
+MintsWiki	i-08fccc27322b60d93	t3.micro	us-east-1f	ec2-3-234-215-29.compute-1.amazonaws.com	3.234.215.29	trecis-root	2021/07/29 22:34 GMT-5
 lora small	i-07a7399c5dbb6f979	t3a.small	us-east-1f	ec2-3-237-8-108.compute-1.amazonaws.com	3.237.8.108	lora	2021/07/29 16:59 GMT-5
 lora large 1	i-023f0d2e73691b079	t3a.large	us-east-1f	ec2-34-204-203-10.compute-1.amazonaws.com	34.204.203.10	lora	2021/07/29 17:04 GMT-5
 lora large 2	i-0c1cbeba834cf2246	t3a.large	us-east-1f	ec2-3-238-248-138.compute-1.amazonaws.com	3.238.248.138	lora	2021/07/29 17:04 GMT-5
