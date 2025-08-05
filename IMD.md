@@ -1,10 +1,104 @@
+# Internal Mints Data (IMD) Local Deployment Upgrade Plan
 
-## IMD dependancies for MINTS 
-Data from MINTS nodes is acquired through three distinct data pipelines: 
-- RSYCED data from directly connected nodes
-- MQTT data from directly connected nodes
-- MQTT data from LoRaWAN nodes
+This document summarizes the **current infrastructure** for the IMD (Internal Mints Data) system and proposes an **on‑premises upgrade** to enhance performance, reliability, and scalability for data acquisition and processing.
 
+---
+
+## 1. Current Infrastructure
+
+| Hostname                  | OS                  | Hardware   | vCPU (Threads) | RAM  | Storage | Purpose                              |
+|--------------------------|--------------------|------------|----------------|------|---------|--------------------------------------|
+| **mintsdata.utdallas.edu** | CentOS Linux 7 (Core) | Dell R710   | 8 (16 threads) | 46 GB | 5 TB    | Handles MINTS node data ingestion (RSYNC & MQTT), processing, and PostgreSQL integration for SharedAirDFW. |
+
+**Key Characteristics:**  
+- **Node.js version:** npm 6.14.5 (may be higher)  
+- **Backups:** None currently implemented  
+- **Load Balancer:** F5 (redirects `mintsdata:2222` → `imd:22` for SSH)  
+- **Status:** No backup system, not integrated with automated failover  
+
+---
+
+## 2. IMD Dependencies for MINTS
+
+IMD acquires and processes data through three main pipelines:
+
+### **a. RSYNC Data from Directly Connected Nodes**  
+- Automated rsync via cronjobs ensures data synchronization after reboots without manual intervention.  
+- Specific SSH keys are established for secure connections.  
+
+### **b. MQTT Data from Directly Connected Nodes & LoRaWAN Nodes**  
+- Data acquisition scripts: [mqttSubscribersV2](https://github.com/mi3nts/mqttSubscribersV2)  
+- Data calibration: [mqttLiveV3](https://github.com/mi3nts/mqttLiveV3)  
+- Particulate matter corrections: [mqttPMCorrections](https://github.com/mi3nts/mqttPMCorrections)  
+
+### **c. PostgreSQL Integration for SharedAirDFW**  
+- CSV outputs from MQTT pipelines are ingested into PostgreSQL using [mints-sensordata-to-postgres-backend](https://github.com/mi3nts/mints-sensordata-to-postgres-backend)  
+- Provides data for [SharedAirDFW](https://www.sharedairdfw.com/)  
+
+---
+
+## 3. Identified Issues
+- **No backup system:** Data (5 TB) is not currently backed up  
+- **Limited processing power:** Dell R710 hardware with 8 vCPUs may bottleneck as pipelines grow  
+- **Potential SSH outages:** Recent issues highlight the need for resilient remote management  
+- **Legacy OS:** CentOS 7 nearing end-of-life; security and support concerns  
+
+---
+
+## 4. Proposed Upgraded Infrastructure
+
+| Component               | vCPU | RAM   | Storage | Notes                                |
+|------------------------|------|-------|---------|--------------------------------------|
+| **IMD Server**         | 16   | 64 GB | 10 TB   | Enhanced ingestion, processing, PostgreSQL, and backup storage |
+| **Backup NAS (New)**   | N/A  | N/A   | 20 TB   | Dedicated storage for daily/weekly backups of IMD data |
+
+**Total:** **16 vCPUs, 64 GB RAM, 10 TB primary + 20 TB backup storage**
+
+---
+
+## 5. Software Stack
+- **OS:** Ubuntu Server 22.04 LTS (replaces CentOS 7)  
+- **Node.js:** Latest LTS version for compatibility with existing scripts  
+- **Database:** PostgreSQL (for SharedAirDFW integration)  
+- **Backup System:** Automated rsync/ZFS snapshots to dedicated NAS  
+- **Monitoring:** Prometheus + Grafana for live system and service health dashboards  
+
+---
+
+## 6. Migration Plan
+1. **Backup Current Data:**  
+   - Full backup of 5 TB data (rsync to external NAS)  
+   - Backup all repositories and scripts (`/mfs/io/groups/lary/gitHubRepos`)  
+
+2. **Provision New Hardware:**  
+   - Deploy Ubuntu Server 22.04 LTS  
+   - Configure RAID/NVMe for 10 TB primary storage  
+
+3. **Reinstall Services:**  
+   - Re-deploy rsync and MQTT pipelines  
+   - Reinstall Node.js-based ingestion scripts  
+   - Reconnect PostgreSQL to SharedAirDFW  
+
+4. **Set Up Automated Backups:**  
+   - Daily rsync to 20 TB NAS  
+   - Weekly off-site/cloud backups  
+
+5. **Testing:**  
+   - Validate ingestion from all pipelines (RSYNC, MQTT, LoRaWAN)  
+   - Verify PostgreSQL connectivity with SharedAirDFW  
+
+---
+
+## 7. Key Improvements
+- **Modernized OS:** Ubuntu 22.04 ensures long-term support  
+- **Performance:** Doubled CPU threads and increased RAM for faster processing  
+- **Data Resilience:** Daily NAS backups + weekly off-site backups  
+- **Monitoring:** Prometheus + Grafana integration for system visibility  
+- **Future-proofing:** Scalable architecture for growing data pipelines  
+
+---
+
+# Key Running Processes (How to Manage Them)
 
 ### RSYCED data from directly connected nodes
 The rsync scripts run automatically on the nodes via cronjobs, ensuring that in the event of an IMD system reboot, data synchronization is automatic. As a result, there is no need for any manual intervention on IMD's part after an unexpected reboot. We have established specific SSH keys to facilitate these connections.
@@ -67,24 +161,4 @@ Mints offer particulate matter corrections for data that may be impacted by prec
 cd /mfs/io/groups/lary/gitHubRepos/mqttPMCorrections/firmware
 nohup ./runCorrections.sh  >/dev/null 2>&1  &
 ```
-
-## Technical Overview 
-F5 Load Balancer
-    * Redirects traffic:
-        * mintsdata:2222 → imd:22 for SSH.
-
-
-## Potential Issues 
-
-### SSH Server Outage
-* System: mints@mintsdata.utdallas.edu
-* Issue:
-    * SSH access failed (kex_exchange_identification: Connection reset by peer), preventing login.
-    * Occurred ahead of an important demo for Prof. Lary.
-* Action Taken:
-    * Stephen intervened to bring the system back online.
-    * Root cause not detailed, likely a service or host-level failure.
-* Impact:
-    * Temporary disruption to remote management and access for MINTS operations.
-
 
