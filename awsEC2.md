@@ -6,7 +6,6 @@ This document summarizes the most likely roles of each AWS EC2 instance in the C
 ---
 
 ## **1. lora small**
-- **ID:** i‑07a7399c5dbb6f979  
 - **Type:** t3a.small (2 vCPU, 2 GiB RAM)  
 - **Most Likely Role:**  
   - **Testing/Staging Server** for ChirpStack components.  
@@ -15,7 +14,6 @@ This document summarizes the most likely roles of each AWS EC2 instance in the C
 ---
 
 ## **2. lora large 1**
-- **ID:** i‑023f0d2e73691b079  
 - **Type:** t3a.large (2 vCPU, 8 GiB RAM)  
 - **Most Likely Role:**  
   - **ChirpStack Network Server (NS):**  
@@ -25,7 +23,6 @@ This document summarizes the most likely roles of each AWS EC2 instance in the C
 ---
 
 ## **3. lora large 2**
-- **ID:** i‑0c1cbeba834cf2246  
 - **Type:** t3a.large (2 vCPU, 8 GiB RAM)  
 - **Most Likely Role:**  
   - **ChirpStack Application Server (AS):**  
@@ -37,7 +34,6 @@ This document summarizes the most likely roles of each AWS EC2 instance in the C
 ---
 
 ## **4. lora medium 1**
-- **ID:** i‑0c88a21ff5cf26794  
 - **Type:** t3a.medium (2 vCPU, 4 GiB RAM)  
 - **Most Likely Role:**  
   - **PostgreSQL Database:**  
@@ -47,7 +43,6 @@ This document summarizes the most likely roles of each AWS EC2 instance in the C
 ---
 
 ## **5. lora medium 2**
-- **ID:** i‑05228f1849fbf0ac3  
 - **Type:** t3a.medium (2 vCPU, 4 GiB RAM)  
 - **Most Likely Role:**  
   - **EMQX MQTT Broker:**  
@@ -57,7 +52,6 @@ This document summarizes the most likely roles of each AWS EC2 instance in the C
 ---
 
 ## **6. lora medium 3**
-- **ID:** i‑03b2c17738b728b06  
 - **Type:** t3a.medium (2 vCPU, 4 GiB RAM)  
 - **Most Likely Role:**  
   - **Redis/Memcached Instance:**  
