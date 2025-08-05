@@ -20,16 +20,19 @@
 
 ### Quick Reference Table
 
-| Hostname                 |  Internal IP      | Role                                     |
-|--------------------------|-------------------|------------------------------------------|
-| **virsh.circ**           | 10.247.245.145    | Hypervisor (KVM host)                    |
-| **psql.circ**            | 10.247.245.219    | Master PostgreSQL DB                     |
-| **mintsdata.circ**       | 10.247.245.211    | Read-only DB, API, web services          |
-| **www1.circ**            | 10.182.78.148     | Web host (multi-site)                    |
-| **mosquitto/mqtt.circ**  | 10.247.245.206    | MQTT broker (IoT data)                   |
-| **io-sftp.circ**         | 10.182.78.143     | Deployment / SFTP                        |
-| **borg.circ**            | 10.182.78.141     | Backup storage                           |
-| **mdash.circ**           | 10.247.245.223    | Sensor processing + Influx/Grafana/Node-RED |
+### Quick Reference Table (with CPU, RAM, and Storage)
+
+| Hostname               | Internal IP      | Role                                     | vCPU | RAM    | Storage  |
+|------------------------|------------------|------------------------------------------|------|--------|----------|
+| **virsh.circ**         | 10.247.245.145   | Hypervisor (KVM host)                    | 48   | 385 GB | 90 TB    |
+| **psql.circ**          | 10.247.245.219   | Master PostgreSQL DB                     | 2    | 16 GB  | 100 GB   |
+| **mintsdata.circ**     | 10.247.245.211   | Read-only DB, API, web services          | 2    | 16 GB  | 100 GB   |
+| **www1.circ**          | 10.182.78.148    | Web host (multi-site)                    | 2    | 16 GB  | <30 GB   |
+| **mosquitto/mqtt.circ**| 10.247.245.206   | MQTT broker (IoT data)                   | 1    | 2 GB   | 30 GB    |
+| **io-sftp.circ**       | 10.182.78.143    | Deployment / SFTP                        | 2    | 8.5 GB | 5 GB     |
+| **borg.circ**          | 10.182.78.141    | Backup storage                           | N/A  | N/A    | 50 TB    |
+| **mdash.circ**         | 10.247.245.223   | Sensor processing + Influx/Grafana/Node-RED | 16 | 64 GB  | 1 TB + 14 TB (MFS) |
+
 
 ---
 
