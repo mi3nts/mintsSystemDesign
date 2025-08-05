@@ -1,69 +1,88 @@
 
-# ChirpStack & LoRaWAN Infrastructure – Roles, Storage, and Capacity Planning
+# ChirpStack & LoRaWAN Local Deployment Upgrade Plan
 
-This document summarizes the most likely roles, CPU/RAM specifications, storage allocations, and data volume calculations for the ChirpStack & LoRaWAN deployment.
-
----
-
-## Instance Roles, Specs & Storage
-
-| Instance         | Type        | vCPU | RAM  | Role                          | Estimated Storage |
-|------------------|-------------|------|------|--------------------------------|-------------------|
-| **lora small**   | t3a.small   | 2    | 2 GB | Testing/Staging Server        | 20–30 GB          |
-| **lora large 1** | t3a.large   | 2    | 8 GB | ChirpStack Network Server     | 50 GB             |
-| **lora large 2** | t3a.large   | 2    | 8 GB | ChirpStack Application Server | 50 GB             |
-| **lora medium 1**| t3a.medium  | 2    | 4 GB | PostgreSQL Database          | 50–100 GB         |
-| **lora medium 2**| t3a.medium  | 2    | 4 GB | EMQX MQTT Broker             | 20–30 GB          |
-| **lora medium 3**| t3a.medium  | 2    | 4 GB | Redis/Memcached              | 20–30 GB          |
-
-**Total recommended provisioned storage:** ~300–400 GB across all instances.
+This document provides the specifications, architecture, and capacity planning to replicate and upgrade the current ChirpStack & LoRaWAN setup for **on-premises (local) deployment**.
 
 ---
 
-## Payload Volume Calculation
-
-**Assumptions:**  
-- Payload size: **50 bytes**  
-- Interval: **15 seconds** (4 messages per minute)  
-- Nodes: **250**  
-- Gateways: **50** (minimal overhead)
-
-### Per Node
-- Messages per day:  
-  `4 × 60 × 24 = 5,760 messages/day`
-- Data per day per node:  
-  `5,760 × 50 bytes ≈ 288,000 bytes (~0.274 MB)`
-
-### For 250 Nodes
-- `0.274 MB × 250 ≈ 68.5 MB/day`
-
-### For 30 Days
-- `68.5 MB/day × 30 ≈ 2.05 GB/month`
-
-### Including Gateway Metadata
-- Adding ~20–30 bytes per message:  
-  `≈ 135 MB/day (≈ 4 GB/month)`
-
-### Logs & Metadata
-- Adding 10× overhead for PostgreSQL indexing, Redis caching, and logs:  
-  `≈ 40–50 GB/month`
-
-### Long-Term Planning
-- For **6 months of retention**:  
-  `40–50 GB/month × 6 ≈ 240–300 GB`
+## Objectives
+- Deploy a **self-contained ChirpStack stack** (Network Server, Application Server, Gateway Bridge) on local infrastructure.
+- Host **PostgreSQL**, **EMQX MQTT broker**, and **Redis** locally.
+- Ensure the system can support **250 LoRaWAN nodes** and **50 gateways** with minimal latency.
+- Provide **scalable storage** for 6+ months of operational data (session metadata, logs).
 
 ---
 
-## Storage Recommendations
+## Recommended Local Server Specifications
 
-- **PostgreSQL:** 100–150 GB (scalable EBS volume for device metadata & indexing)  
-- **Network Server:** 50 GB (OS, ChirpStack, and logs)  
-- **Application Server:** 50 GB (OS, ChirpStack, and logs)  
-- **EMQX Broker:** 30 GB (OS and transient logs)  
-- **Redis/Memcached:** 30 GB (OS and ephemeral data)  
-- **Testing/Staging Server:** 20–30 GB  
+| Component                | vCPU | RAM  | Storage (EBS/Local SSD) | Notes                                |
+|--------------------------|------|------|--------------------------|--------------------------------------|
+| **ChirpStack Network Server**     | 4    | 8 GB  | 50 GB                   | Handles MAC layer, ADR, sessions    |
+| **ChirpStack Application Server** | 4    | 8 GB  | 50 GB                   | Decrypts payloads, API, MQTT output |
+| **PostgreSQL Database**           | 4    | 8 GB  | 150 GB                  | Stores device/session data & metadata |
+| **EMQX MQTT Broker**              | 2    | 4 GB  | 30 GB                   | Handles MQTT messaging              |
+| **Redis/Memcached**               | 2    | 4 GB  | 30 GB                   | Session caching for performance     |
+| **Testing/Staging Server**        | 2    | 2 GB  | 20 GB                   | Optional – for development          |
+
+**Total:** ~18–20 vCPUs, 34–36 GB RAM, 300–400 GB storage.
 
 ---
 
-**Note:**  
-Since **payloads are not permanently stored**, storage requirements are modest. The largest consumers are **PostgreSQL (session data + indexes)** and **ChirpStack logs**.
+## Payload & Storage Planning
+
+**Payload assumptions:**  
+- **50 bytes per packet**  
+- **1 packet every 15 seconds**  
+- **250 nodes**  
+
+**Daily volume per node:**  
+- 4 messages/min × 60 × 24 = **5,760 messages/day**  
+- 5,760 × 50 bytes ≈ **288 KB/day**  
+
+**For 250 nodes:**  
+- ≈ **68.5 MB/day**  
+- ≈ **2–3 GB/month** (raw payload)  
+
+**With logs, indexes, metadata:**  
+- ≈ **40–50 GB/month**  
+
+**6-month retention:**  
+- ≈ **240–300 GB** total.
+
+---
+
+## Recommended Local Architecture
+
+1. **Gateways** connect to **ChirpStack Gateway Bridge** running on the Network Server.  
+2. **ChirpStack Network Server** handles LoRaWAN MAC layer, ADR, device sessions.  
+3. **ChirpStack Application Server** decrypts payloads and pushes data to **EMQX MQTT broker**.  
+4. **PostgreSQL** stores device sessions, join info, and metadata.  
+5. **Redis** provides caching for session lookups and accelerates performance.  
+6. **Optional staging server** for testing upgrades before production rollout.
+
+---
+
+## Upgrade Considerations
+- **High Availability:** Consider using **two local servers** for Network/Application Server redundancy.  
+- **Backups:** Regular PostgreSQL backups to external storage or cloud.  
+- **Scalability:** Choose hardware that allows easy CPU/RAM upgrades for >250 nodes.  
+- **Security:** Use TLS for MQTT, role-based DB access, and firewall rules for external access.  
+- **Monitoring:** Integrate Prometheus/Grafana for local performance dashboards.  
+
+---
+
+## Next Steps
+1. **Procure hardware:** Minimum 8-core CPU, 32 GB RAM, 500 GB SSD storage.  
+2. **Install OS:** Ubuntu Server 22.04 LTS (or similar).  
+3. **Deploy services:**  
+   - PostgreSQL  
+   - Redis  
+   - EMQX MQTT broker  
+   - ChirpStack stack (Gateway Bridge, Network Server, Application Server)  
+4. **Configure:**  
+   - LoRaWAN regions, device profiles, and gateways.  
+   - Secure MQTT with TLS and authentication.  
+   - Set up DB backup routines.  
+5. **Test:** Validate connectivity with 1–2 gateways and a small device set before full migration.
+
+---
