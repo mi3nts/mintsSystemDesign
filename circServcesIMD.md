@@ -1,14 +1,15 @@
 # Internal Mints Data (IMD) Local Deployment Upgrade Plan
 
 This document summarizes the **current infrastructure** for the IMD (Internal Mints Data) system and proposes an **on‑premises upgrade** to enhance performance, reliability, and scalability for data acquisition and processing.
+IMD handles MINTS node data ingestion (RSYNC & MQTT), processing, and PostgreSQL integration for SharedAirDFW. |
 
 ---
 
 ## 1. Current Infrastructure
 
-| Hostname                    | OS                    | Hardware   | vCPU (Threads) | RAM   | Storage (Local) | Network Storage       | Purpose                              |
-|-----------------------------|----------------------|------------|----------------|-------|-----------------|----------------------|--------------------------------------|
-| **mintsdata.utdallas.edu**  | CentOS Linux 7 (Core) | Dell R710  | 8 (16 threads) | 46 GB | 150 GB (root+home) | 14 TB MooseFS (`/mfs/io/groups/lary`, 10 TB used) | Handles MINTS node data ingestion (RSYNC & MQTT), processing, and PostgreSQL integration for SharedAirDFW. |
+| Hostname                    | OS                    | Hardware   | vCPU (Threads) | RAM   | Storage (Local) | Network Storage       |
+|-----------------------------|----------------------|------------|----------------|-------|-----------------|----------------------|
+| **mintsdata.utdallas.edu**  | CentOS Linux 7 (Core) | Dell R710  | 8 (16 threads) | 46 GB | 150 GB (root+home) | 14 TB MooseFS (`/mfs/io/groups/lary`, 10 TB used) | 
 
 **Key Characteristics:**  
 - **Node.js version:** npm 6.14.5 (may be higher)  
