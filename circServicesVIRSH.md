@@ -335,7 +335,7 @@ markdown_circ_with_upgrade = """
 | **mintsdata.circ (API + Read Replica)** | 8 | 32 GB | 500 GB | Merge API hosting + dashboards here; containerize for easier deployments. |
 | **www1.circ (Web Host)**    | 8    | 32 GB  | 200 GB  | Consolidate all MINTS-related web apps; migrate to Ubuntu + Nginx. |
 | **mosquitto.circ (MQTT)**   | 4    | 8 GB   | 100 GB  | Upgrade Mosquitto to latest LTS, enhance TLS handling. |
-| **mdash.circ (Data Processing)** | 16 | 64 GB | 2 TB   | Expand for InfluxDB (sensor data), Grafana (dashboards), Node‑RED (pipelines), *Prometheus* (infrastructure monitoring). |
+| **mdash.circ (Data Processing & Monitoring)** | 20 | 64 GB | 2 TB   | Expand for InfluxDB (sensor data), Grafana (dashboards), Node‑RED (pipelines), *Prometheus* (infrastructure monitoring). |
 | **io-sftp.circ (Deployment)** | 4 | 16 GB | 50 GB   | Continue GitHub → Production pipelines, add CI/CD tooling. |
 | **borg.circ (Backup)**      | N/A  | N/A    | 50 TB   | Expand storage, automate full-system snapshots and off-site replication. |
 
