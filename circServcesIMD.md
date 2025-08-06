@@ -1,4 +1,4 @@
-# Internal Mints Data (IMD) Local Deployment Upgrade Plan
+# Internal Mints Data (IMD)
 
 This document summarizes the **current infrastructure** for the IMD (Internal Mints Data) system and proposes an **on‑premises upgrade** to enhance performance, reliability, and scalability for data acquisition and processing.
 IMD handles MINTS node data ingestion (RSYNC & MQTT), processing, and PostgreSQL integration for SharedAirDFW. |
