@@ -6,9 +6,9 @@ This document summarizes the **current infrastructure** for the IMD (Internal Mi
 
 ## 1. Current Infrastructure
 
-| Hostname                  | OS                  | Hardware   | vCPU (Threads) | RAM  | Storage | Purpose                              |
-|--------------------------|--------------------|------------|----------------|------|---------|--------------------------------------|
-| **mintsdata.utdallas.edu** | CentOS Linux 7 (Core) | Dell R710   | 8 (16 threads) | 46 GB | 5 TB    | Handles MINTS node data ingestion (RSYNC & MQTT), processing, and PostgreSQL integration for SharedAirDFW. |
+| Hostname                    | OS                    | Hardware   | vCPU (Threads) | RAM   | Storage (Local) | Network Storage       | Purpose                              |
+|-----------------------------|----------------------|------------|----------------|-------|-----------------|----------------------|--------------------------------------|
+| **mintsdata.utdallas.edu**  | CentOS Linux 7 (Core) | Dell R710  | 8 (16 threads) | 46 GB | 150 GB (root+home) | 14 TB MooseFS (`/mfs/io/groups/lary`, 10 TB used) | Handles MINTS node data ingestion (RSYNC & MQTT), processing, and PostgreSQL integration for SharedAirDFW. |
 
 **Key Characteristics:**  
 - **Node.js version:** npm 6.14.5 (may be higher)  
@@ -38,21 +38,22 @@ IMD acquires and processes data through three main pipelines:
 ---
 
 ## 3. Identified Issues
-- **No backup system:** Data (5 TB) is not currently backed up  
+- **No backup system:** Local and MooseFS data are not currently backed up  
 - **Limited processing power:** Dell R710 hardware with 8 vCPUs may bottleneck as pipelines grow  
 - **Potential SSH outages:** Recent issues highlight the need for resilient remote management  
 - **Legacy OS:** CentOS 7 nearing end-of-life; security and support concerns  
+- **Limited shared storage:** Current MooseFS capacity (14 TB) is reaching 73% utilization  
 
 ---
 
 ## 4. Proposed Upgraded Infrastructure
 
-| Component               | vCPU | RAM   | Storage | Notes                                |
-|------------------------|------|-------|---------|--------------------------------------|
-| **IMD Server**         | 16   | 64 GB | 10 TB   | Enhanced ingestion, processing, PostgreSQL, and backup storage |
-| **Backup NAS (New)**   | N/A  | N/A   | 20 TB   | Dedicated storage for daily/weekly backups of IMD data |
+| Component               | vCPU | RAM   | Storage (Local) | Network Storage        | Notes                                |
+|------------------------|------|-------|-----------------|------------------------|--------------------------------------|
+| **IMD Server**         | 16   | 64 GB | **10 TB NVMe**  | **50 TB MooseFS (expanded)** | Enhanced ingestion, processing, PostgreSQL, and shared storage |
+| **Backup NAS (New)**   | N/A  | N/A   | N/A             | **40 TB**             | Dedicated storage for daily/weekly backups of IMD + MooseFS data |
 
-**Total:** **16 vCPUs, 64 GB RAM, 10 TB primary + 20 TB backup storage**
+**Total:** **16 vCPUs, 64 GB RAM, 10 TB primary local + 50 TB MooseFS + 40 TB backup NAS**
 
 ---
 
@@ -65,9 +66,19 @@ IMD acquires and processes data through three main pipelines:
 
 ---
 
-## 6. Migration Plan
+## 6. MooseFS in IMD
+IMD leverages **MooseFS (MFS)** as its **primary distributed file system** for bulk sensor data storage.  
+- **Mounted at:** `/mfs/io/groups/lary`  
+- **Current capacity:** 14 TB (10 TB used, 73% utilization)  
+- **Proposed capacity:** **Expand to 50 TB** to accommodate growth for at least 5–7 years.  
+- **Purpose:** Provides **shared, redundant storage** accessible by multiple CIRC systems (IMD, mdash, etc.).  
+- **Key Benefit:** Ensures data is **fault-tolerant** and accessible across the cluster without duplicating datasets locally.  
+
+---
+
+## 7. Migration Plan
 1. **Backup Current Data:**  
-   - Full backup of 5 TB data (rsync to external NAS)  
+   - Full backup of all local data (rsync to external NAS)  
    - Backup all repositories and scripts (`/mfs/io/groups/lary/gitHubRepos`)  
 
 2. **Provision New Hardware:**  
@@ -80,7 +91,7 @@ IMD acquires and processes data through three main pipelines:
    - Reconnect PostgreSQL to SharedAirDFW  
 
 4. **Set Up Automated Backups:**  
-   - Daily rsync to 20 TB NAS  
+   - Daily rsync to 40 TB NAS  
    - Weekly off-site/cloud backups  
 
 5. **Testing:**  
@@ -89,9 +100,11 @@ IMD acquires and processes data through three main pipelines:
 
 ---
 
-## 7. Key Improvements
+## 8. Key Improvements
 - **Modernized OS:** Ubuntu 22.04 ensures long-term support  
 - **Performance:** Doubled CPU threads and increased RAM for faster processing  
+- **Expanded Local Storage:** **10 TB NVMe** for high-speed ingestion & processing  
+- **Expanded Shared Storage:** **MooseFS expanded from 14 TB → 50 TB** for long-term growth  
 - **Data Resilience:** Daily NAS backups + weekly off-site backups  
 - **Monitoring:** Prometheus + Grafana integration for system visibility  
 - **Future-proofing:** Scalable architecture for growing data pipelines  
