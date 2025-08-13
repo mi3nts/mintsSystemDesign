@@ -3,12 +3,9 @@
 
 
 ## Overall Architecture
-![MINTS Diagram](https://github.com/mi3nts/mintsSystemDesign/blob/main/res/mintsSystemDesign.drawio.png?raw=true)
+![MINTS Diagram](https://github.com/mi3nts/mintsSystemDesign/blob/main/res/mintsSystemDesignV3.drawio.png?raw=true)
 ---
 
-## Physical Architecture 
-![MINTS Diagram](https://github.com/mi3nts/mintsSystemDesign/blob/main/res/physicalInterface.drawio.png?raw=true)
----
 
 ## 🖥️ IMD Internal Mints Data 
 
